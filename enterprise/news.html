@@ -6,24 +6,160 @@
     <title>数码之家-新闻</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="nav">
-      <a href="index.html">
-        <div class="home">
-          <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
-          <span style="line-height: 40px;">数码之家</span>
+    <div class="news">
+      <div class="nav">
+        <a href="index.html">
+          <div class="home">
+            <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
+            <span style="line-height: 40px;">数码之家</span>
+          </div>
+        </a>
+        <div>
+          <ul>
+            <a href="index.html"><li>首页</li></a>
+            <a href="news.html"><li>新闻</li></a>
+            <a href="about.html"><li>关于我们</li></a>
+          </ul>
         </div>
-      </a>
-      <div>
-        <ul>
-          <a href="index.html"><li>首页</li></a>
-          <a href="news.html"><li>新闻</li></a>
-          <a href="about.html"><li>关于我们</li></a>
-        </ul>
+      </div>
+      <div class="content">
+        <div class="news-content">
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+          <div>
+            <div class="loading">
+              <div></div>
+            </div>
+            <a href='#'>
+              <div class='news-item' style='display:none;'>
+                <img src='' ></img>
+                <div class="name"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="news-page">
+          <ul>
+            <li class="active">1</li>
+            <li>2</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="contact">
+          <div class="contact-item">
+            <img src="./public/map.png" alt="" />
+            <div>
+              福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/email.png" alt="" />
+            <div>
+              test10086@qq.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/mobile-phone.png" alt="" />
+            <div>
+              18159879874
+            </div>
+          </div>
+          <img src="./public/code.png" alt="" />
+        </div>
+        <div class="copyright">
+          版权所有&copy;数码之家
+        </div>
       </div>
     </div>
-    新闻
   </body>
   <script src="./script.js"></script>
+  <script>
+    $(document).ready(function () {
+      axios.get("http://mock-api.com/5g7EP2Ke.mock/news?page=1").then((res) => {
+        const { data } = res;
+        let pageIndex = $(".news-page .active").text()-1;
+        setTimeout(()=>{
+          data.data.map((item,index)=>{
+            $('.news-content a').eq(index).attr('href',`news-detail.html?id=${index+pageIndex*6}`)
+            $('.news-content img').eq(index).attr('src',item.imgSrc)
+            $('.news-content .name').eq(index).text(item.name);
+          })
+          $('.news-item').css('display','flex');
+          $('.loading').css('display','none')
+        },1000)
+      });
+      $(".news-page li").click(function () {
+        $(".news-page li").removeClass("active");
+        $(this).addClass("active");
+        let pageIndex = $(this).text();
+        axios
+          .get(`http://mock-api.com/5g7EP2Ke.mock/news?page=${pageIndex}`)
+          .then((res) => {
+            const { data } = res;
+            let pageIndex = $(".news-page .active").text()-1;
+            data.data.map((item,index)=>{
+              $('.news-content a').eq(index).attr('href',`news-detail.html?id=${index+pageIndex*6}`)
+              $('.news-content .name').eq(index).text(item.name);
+            })
+          });
+      });
+    });
+  </script>
 </html>
