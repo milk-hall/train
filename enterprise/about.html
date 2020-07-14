@@ -6,6 +6,10 @@
     <title>数码之家-关于我们</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="http://api.map.baidu.com/api?v=2.0&ak=4twEQkGd3l32NM43dKc0mZKc9WUNa5cU"
+    ></script>
   </head>
   <body>
     <div class="about">
@@ -28,8 +32,80 @@
         <div class="title">
           <h2>关于我们</h2>
         </div>
+        <div class="introduce">
+          <div id="allmap"></div>
+          <div class="contact">
+            <div>
+              主要涉及的业务有：笔记本，手机，数码产品，电脑DIY，电脑外设，以及电话卡等学生常用的电子产品，拥有强大的上游资源支持，已正式成为索尼、佳能、松下、富士、惠普等企业的授权金牌经销商，公司主营业务主要包括：办公设备，电教设备，网络信息技术、数码产品经营方式以实体店铺配合网络销售为主。
+            </div>
+            <div class="contact-item">
+              <img src="./public/map.png" alt="" />
+              <div>
+                福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="./public/email.png" alt="" />
+              <div>
+                test10086@qq.com
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="./public/mobile-phone.png" alt="" />
+              <div>
+                18159879874
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="contact">
+          <div class="contact-item">
+            <img src="./public/map.png" alt="" />
+            <div>
+              福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/email.png" alt="" />
+            <div>
+              test10086@qq.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/mobile-phone.png" alt="" />
+            <div>
+              18159879874
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/code.png" alt="" />
+            <div>
+               
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          版权所有&copy;数码之家
+        </div>
       </div>
     </div>
   </body>
   <script src="./script.js"></script>
+  <script>
+    // 百度地图API功能
+    var map = new BMap.Map("allmap"); // 创建Map实例
+    map.centerAndZoom(new BMap.Point(119.248095, 26.058842), 30); // 初始化地图,设置中心点坐标和地图级别
+    var mk = new BMap.Marker(new BMap.Point(119.248095, 26.058842));
+    map.addOverlay(mk);
+    //添加地图类型控件
+    map.addControl(
+      new BMap.MapTypeControl({
+        mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP],
+      })
+    );
+    map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+  </script>
 </html>
