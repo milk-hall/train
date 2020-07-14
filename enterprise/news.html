@@ -137,7 +137,7 @@
   <script src="./script.js"></script>
   <script>
     $(document).ready(function () {
-      axios.get("https://mock-api.com/5g7EP2Ke.mock/news?page=1").then((res) => {
+      axios.get("http://mock-api.com/5g7EP2Ke.mock/news?page=1").then((res) => {
         const { data } = res;
         let pageIndex = $(".news-page .active").text()-1;
         setTimeout(()=>{
@@ -155,7 +155,7 @@
         $(this).addClass("active");
         let pageIndex = $(this).text();
         axios
-          .get(`https://mock-api.com/5g7EP2Ke.mock/news?page=${pageIndex}`)
+          .get(`http://mock-api.com/5g7EP2Ke.mock/news?page=${pageIndex}`)
           .then((res) => {
             const { data } = res;
             let pageIndex = $(".news-page .active").text()-1;

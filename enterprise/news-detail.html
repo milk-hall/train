@@ -71,7 +71,7 @@
     $(document).ready(function () {
       let id = parseInt(location.search.split("=")[1]);
       axios
-        .get("https://mock-api.com/5g7EP2Ke.mock/news")
+        .get("http://mock-api.com/5g7EP2Ke.mock/news")
         .then(async (res) => {
           const { data } = res;
           let result = data[id];

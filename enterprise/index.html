@@ -154,7 +154,7 @@
           left: `-${width * index}px`,
         });
       });
-      axios.get("https://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
+      axios.get("http://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
         const { data } = res;
         const news = data.filter((item, index) => index < 4);
         news.map((item, index) => {
