@@ -99,21 +99,22 @@
         </div>
         <div>
           <h2>产品新闻</h2>
-          <div class="news">
-
-          </div>
+          <div class="news"></div>
         </div>
       </div>
     </div>
   </body>
+  <script src="./script.js"></script>
   <script>
+    window.onresize = function () {
+      let index = $(".slide-active").text() - 1;
+      let width = $(document).width() + getScrollbarWidth();
+      $(".slide").css("left", `-${width * index}px`);
+    };
     $(document).ready(function () {
       $(".active li").click(function () {
         $(".active li").removeClass("slide-active");
         let width = $(document).width() + getScrollbarWidth();
-        console.log("window", $(window).width());
-        console.log("document", $(document).width());
-        console.log("offset", $(window).offset());
         let nowClick = $(this);
         nowClick.addClass("slide-active");
         let index = nowClick.text() - 1;
