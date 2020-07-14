@@ -141,15 +141,15 @@ a {
 }
 
 .indexPage .news-item > img {
-  width: 10rem;
-  height: 10rem;
+  width: 10rem !important;
+  height: 10rem !important;
   min-width: 300px;
   min-height: 300px;
 }
 .indexPage .news-item > div {
   text-align: left;
   font-size: 1rem;
-  width: 15rem;
+  width: 10rem !important;
   min-width: 300px;
   padding: 5px;
   box-sizing: border-box;
