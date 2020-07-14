@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="indexPage">
+      <div class="nav">
+        <a href="index.html">
+          <div class="home">
+            <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
+            <span style="line-height: 40px;">数码之家</span>
+          </div>
+        </a>
+        <div>
+          <ul>
+            <a href="index.html"><li>首页</li></a>
+            <a href="news.html"><li>新闻</li></a>
+            <a href="about.html"><li>关于我们</li></a>
+          </ul>
+        </div>
+      </div>
+      <div class="banner">
+        <ul class="slide">
+          <li>
+            <img src="./public/banner/1b409e11e58627ed.jpg" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./public/banner/7fa63f6a3f837c34.jpg" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./public/banner/951ae72b2bf7edf2.jpg" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./public/banner/e91577c15269fddf.jpg" alt="" srcset="" />
+          </li>
+        </ul>
+        <ul class="active">
+          <li class="slide-active">1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+      </div>
+      <div class="content">
+        <h1>服务范围</h1>
+        <div>
+          <h2>新品介绍</h2>
+          <div class="product">
+            <div class="product-item">
+              <img src="./public/newProduct/华为matebook14.jpg" alt="" />
+              <div class="description">
+                <h4>华为HUAWEI MateBook 14 2020</h4>
+                <p>
+                  华为HUAWEI MateBook 14 2020款全面屏轻薄笔记本电脑 十代酷睿(i5
+                  16G 512G MX350 触控屏 多屏协同)灰
+                </p>
+                <p class="info">
+                  2k炫丽全面屏，搭配MX350版独立显卡，超轻薄金属机身，多点触控，指纹识别，配合多屏协同畅享劲酷体验！
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="product">
+            <div class="product-item">
+              <div class="description">
+                <h4>联想(Lenovo)小新Air14</h4>
+                <p>
+                  联想(Lenovo)小新Air14 2020锐龙版轻薄本
+                  全面屏办公笔记本电脑(6核R5-4600U 16G 512G 高色域)深空灰
+                </p>
+                <p class="info">
+                  【爆款#优惠300到手价4199,7月14日8点开抢】学生网课办公娱乐,100%sRGB,6核12线程，智能散热调节,指纹背光齐全,接口丰富可快充
+                </p>
+              </div>
+              <img src="./public/newProduct/小新Air14.jpg" alt="" />
+            </div>
+          </div>
+          <div class="product">
+            <div class="product-item">
+              <img src="./public/newProduct/thinkpadE14.jpg" alt="" />
+              <div class="description">
+                <h4>联想ThinkPad E14 锐龙版</h4>
+                <p>
+                  联想ThinkPad E14
+                  锐龙版（1TCD）14英寸轻薄笔记本电脑（锐龙5-4500U 16G 512GSSD
+                  IPS高分屏）黑色
+                </p>
+                <p class="info">
+                  全新7nm，可扩充双SSD，黑阀隐私摄像头，12项军标稳定测试，ThinkCool智能散热，哈曼卡顿
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>产品新闻</h2>
+          <div class="news">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $(".active li").click(function () {
+        $(".active li").removeClass("slide-active");
+        let width = $(document).width() + getScrollbarWidth();
+        console.log("window", $(window).width());
+        console.log("document", $(document).width());
+        console.log("offset", $(window).offset());
+        let nowClick = $(this);
+        nowClick.addClass("slide-active");
+        let index = nowClick.text() - 1;
+        $(".slide").animate({
+          left: `-${width * index}px`,
+        });
+      });
+    });
+    function getScrollbarWidth() {
+      var odiv = document.createElement("div"), //创建一个div
+        styles = {
+          width: "100px",
+          height: "100px",
+          overflowY: "scroll", //让他有滚动条
+        },
+        i,
+        scrollbarWidth;
+      for (i in styles) odiv.style[i] = styles[i];
+      document.body.appendChild(odiv); //把div添加到body中
+      scrollbarWidth = odiv.offsetWidth - odiv.clientWidth; //相减
+      odiv.remove(); //移除创建的div
+      return scrollbarWidth; //返回滚动条宽度
+    }
+  </script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>弹幕墙</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="barrage"></div>
+    <div class="barrage-form">
+      <input type="text" id="launch" /><br />
+      <button class="launch">发射</button>
+      <button class="clear">清屏</button>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("button").mousedown(function () {
+        $(this).addClass("checked");
+      });
+      $("button").mouseup(function () {
+        $(this).removeClass("checked");
+      });
+      $(".launch").click(function () {
+        let newBarrage = $(
+          `<div class='barrage-item'>${$("#launch").val()}</div>`
+        );
+        // $("#launch").val('')
+        let y = parseInt(Math.random() * 200 + 20);
+        let fontSize = parseInt(Math.random() * 64 + 1);
+        if((y+fontSize)>300) {
+          y = 295-fontSize
+        }
+        console.log(newBarrage.width())
+        let color = parseInt(Math.random() * (999999 - 100000 + 1) + 100000);
+        newBarrage.css("color", "#" + color);
+        newBarrage.css("top", y+'px');
+        newBarrage.css("fontSize", fontSize + "px");
+        $(".barrage").append(newBarrage);
+        newBarrage.animate({
+          left: -400+'px',
+        },(Math.random() * 5000 + 3000));
+      });
+      $('.clear').click(function(){
+        $(".barrage-item").remove();
+      })
+    });
+  </script>
+</html>

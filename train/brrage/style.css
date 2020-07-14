@@ -1,0 +1,55 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.barrage {
+  margin: 10px;
+  border: 1px solid #3d4455;
+  height: 300px;
+  position: relative;
+}
+.barrage-form {
+  text-align: center;
+}
+.barrage-form > input {
+  width: 200px;
+  height: 40px;
+}
+.barrage-form > button {
+  width: 100px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.barrage-form > button {
+  width: 100px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  color: #3d4455;
+  border: 1px solid #3d4455;
+  outline: none;
+}
+.checked {
+  background-color: #eee !important;
+  border: 1px solid #eee !important;
+  outline: none;
+}
+.barrage-form > .launch {
+  width: 100px;
+  height: 40px;
+  background-color: #fff;
+  color: pink;
+  border: 1px solid pink;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.barrage-item{
+  font-size: 14px;
+  position: absolute;
+  bottom: -40px;
+  right: 40px;
+  transform: translateX(-20px);
+}
