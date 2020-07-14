@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
     <title>数码之家-首页</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
@@ -18,12 +21,15 @@
             <span style="line-height: 40px;">数码之家</span>
           </div>
         </a>
-        <div>
+        <div class="normal" style="display: none;">
           <ul>
             <a href="index.html"><li>首页</li></a>
             <a href="news.html"><li>新闻</li></a>
             <a href="about.html"><li>关于我们</li></a>
           </ul>
+        </div>
+        <div class="mobile"  style="display: none;">
+          <img src="./public/menu.png" alt="" width="35px" height="35px">
         </div>
       </div>
       <div class="banner">
@@ -126,13 +132,11 @@
           </div>
           <div class="contact-item">
             <img src="./public/code.png" alt="" />
-            <div>
-               
-            </div>
+            <div></div>
           </div>
         </div>
         <div class="copyright">
-          版权所有&copy;数码之家 
+          版权所有&copy;数码之家
         </div>
       </div>
     </div>
@@ -143,6 +147,18 @@
       let index = $(".slide-active").text() - 1;
       let width = $(document).width() + getScrollbarWidth();
       $(".slide").css("left", `-${width * index}px`);
+      if (width < 920) {
+        $('.banner').css('display','none')
+        let img = $(".product-item:eq(1) img");
+        let des = $(".product-item:eq(1) .description");
+        img.insertBefore(des);
+      }
+      if (width > 920) {
+        $('.banner').css('display','block')
+        let img = $(".product-item:eq(1) img");
+        let des = $(".product-item:eq(1) .description");
+        des.insertBefore(img);
+      }
     };
     $(document).ready(function () {
       $(".active li").click(function () {
@@ -171,20 +187,6 @@
         });
       });
     });
-    function getScrollbarWidth() {
-      var odiv = document.createElement("div"), //创建一个div
-        styles = {
-          width: "100px",
-          height: "100px",
-          overflowY: "scroll", //让他有滚动条
-        },
-        i,
-        scrollbarWidth;
-      for (i in styles) odiv.style[i] = styles[i];
-      document.body.appendChild(odiv); //把div添加到body中
-      scrollbarWidth = odiv.offsetWidth - odiv.clientWidth; //相减
-      odiv.remove(); //移除创建的div
-      return scrollbarWidth; //返回滚动条宽度
-    }
+   
   </script>
 </html>
