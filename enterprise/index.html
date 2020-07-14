@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>首页</title>
+    <title>数码之家-首页</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="indexPage">
@@ -99,7 +100,9 @@
         </div>
         <div>
           <h2>产品新闻</h2>
-          <div class="news"></div>
+          <div class="news">
+
+          </div>
         </div>
       </div>
     </div>
@@ -120,6 +123,21 @@
         let index = nowClick.text() - 1;
         $(".slide").animate({
           left: `-${width * index}px`,
+        });
+      });
+      axios.get("http://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
+        const { data } = res;
+        const news = data.filter((item, index) => index < 4);
+        news.map((item,index) => {
+          let newBarrage = $(
+            `<a href='/news-detail.html?id=${index}'>
+              <div class='news-item'>
+                <img src='${item.imgSrc}'></img>
+                <div>${item.name}</div>
+              </div>
+            </a>`
+          );
+          $(".indexPage .news").append($(newBarrage));
         });
       });
     });

@@ -67,6 +67,7 @@ a {
   border-radius: 50%;
   background-color: #eee;
   font-size: 0px;
+  cursor: pointer;
 }
 .slide-active {
   background-color: #3d4455 !important;
@@ -100,7 +101,7 @@ a {
   min-width: 350px;
   min-height: 350px;
   padding: 30px;
-  font-size: 0.2rem;
+  font-size: 1rem;
   position: relative;
   box-sizing: border-box;
 }
@@ -109,15 +110,42 @@ a {
 }
 .indexPage .product-item .description > .info {
   color: #5c5c5c;
-  font-size: 0.1rem !important;
+  width: 80%;
+  font-size: 0.4rem !important;
   position: absolute;
   bottom: 40px;
-  margin-right: 10px;
   border-top: 1px solid #3d4455;
   padding-top: 30px;
-  margin-right: 30px;
+  left: 10%;
 }
 
 .indexPage .news {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.indexPage .news-item {
+  background-color: #eee;
+  padding: 10px;
+  margin: 10px;
+  flex: 1;
+}
+
+.indexPage .news-item:hover {
+  background-color: pink;
+}
+
+.indexPage .news-item > img {
+  width: 10rem;
+  height: 10rem;
+}
+.indexPage .news-item > div {
+  background-color: #eee;
+  text-align: left;
+  padding: 10px;
+  font-size: 1rem;
+  width: 10rem;
+  min-height: 5rem;
+  color: #3d4455;
 }
