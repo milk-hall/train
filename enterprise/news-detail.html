@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>数码之家-新闻详情</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数码之家-新闻详情</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="news-detail">
+      <div class="nav">
+        <a href="index.html">
+          <div class="home">
+            <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
+            <span style="line-height: 40px;">数码之家</span>
+          </div>
+        </a>
+        <div>
+          <ul>
+            <a href="index.html"><li>首页</li></a>
+            <a href="news.html"><li>新闻</li></a>
+            <a href="about.html"><li>关于我们</li></a>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <h2 class="title"></h2>
+        <img src="" alt="" width="80%" />
+        <p></p>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+  <script>
+    $(document).ready(function () {
+      var id = parseInt(location.search.split("=")[1]);
+      console.log(id);
+      axios
+        .get("http://mock-api.com/5g7EP2Ke.mock/news")
+        .then((res) => {
+          const { data } = res;
+          let result = data[id];
+          console.log(result.name);
+          $(".news-detail .title").text(result.name);
+          $(".news-detail .content img").attr("src", result.wallpaper);
+          $(".news-detail p").text(result.description);
+        })
+        .catch(function (res) {
+          console.log("error", res);
+        });
+    });
+  </script>
 </html>

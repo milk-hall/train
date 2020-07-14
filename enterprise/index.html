@@ -100,9 +100,33 @@
         </div>
         <div>
           <h2>产品新闻</h2>
-          <div class="news">
-
+          <div class="news"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="contact">
+          <div class="contact-item">
+            <img src="./public/map.png" alt="" />
+            <div>
+              福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+            </div>
           </div>
+          <div class="contact-item">
+            <img src="./public/email.png" alt="" />
+            <div>
+              test10086@qq.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="./public/mobile-phone.png" alt="" />
+            <div>
+              18159879874
+            </div>
+          </div>
+          <img src="./public/code.png" alt="">
+        </div>
+        <div class="copyright">
+          版权所有&copy;数码之家 
         </div>
       </div>
     </div>
@@ -128,9 +152,9 @@
       axios.get("http://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
         const { data } = res;
         const news = data.filter((item, index) => index < 4);
-        news.map((item,index) => {
+        news.map((item, index) => {
           let newBarrage = $(
-            `<a href='/news-detail.html?id=${index}'>
+            `<a href='news-detail.html?id=${index}'>
               <div class='news-item'>
                 <img src='${item.imgSrc}'></img>
                 <div>${item.name}</div>
