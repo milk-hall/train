@@ -28,8 +28,15 @@
             <a href="about.html"><li>关于我们</li></a>
           </ul>
         </div>
-        <div class="mobile"  style="display: none;">
-          <img src="./public/menu.png" alt="" width="35px" height="35px">
+        <div class="mobile" style="display: none;">
+          <img src="./public/menu.png" alt="" width="35px" height="35px" />
+          <div class="mobile-nav">
+            <ul>
+              <a href="index.html"><li>首页</li></a>
+              <a href="news.html"><li>新闻</li></a>
+              <a href="about.html"><li>关于我们</li></a>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="banner">
@@ -148,13 +155,13 @@
       let width = $(document).width() + getScrollbarWidth();
       $(".slide").css("left", `-${width * index}px`);
       if (width < 920) {
-        $('.banner').css('display','none')
+        $(".banner").css("display", "none");
         let img = $(".product-item:eq(1) img");
         let des = $(".product-item:eq(1) .description");
         img.insertBefore(des);
       }
       if (width > 920) {
-        $('.banner').css('display','block')
+        $(".banner").css("display", "block");
         let img = $(".product-item:eq(1) img");
         let des = $(".product-item:eq(1) .description");
         des.insertBefore(img);
@@ -187,6 +194,5 @@
         });
       });
     });
-   
   </script>
 </html>

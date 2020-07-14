@@ -12,11 +12,11 @@ a {
   border-bottom: 1px solid #eee;
   height: 80px;
   background-color: #4f4f4f;
-  opacity: 0.8;
   align-items: center;
   padding: 0 10%;
   color: #fff;
   font-size: 0.8rem;
+  position: relative;
 }
 .nav ul li {
   display: inline;
@@ -32,6 +32,27 @@ a {
 .nav .home > img {
   border-radius: 50%;
   margin-right: 20px;
+}
+
+.nav .mobile-nav{
+  position: absolute;
+  background-color: #4f4f4f;
+  top:-200px;
+  height: auto;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.nav .mobile-nav ul{
+  margin: 0;
+  padding: 0;
+}
+.nav .mobile-nav ul li{
+  display: block;
+  padding: 10px 10px;
+}
+.nav .mobile-nav ul li:hover{
+  background-color: #3d4455;
 }
 .indexPage .banner {
   overflow: hidden;

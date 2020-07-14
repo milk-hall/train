@@ -3,37 +3,51 @@ window.onload = function () {
   为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
   getRem(750, 10);
   let width = $(document).width() + getScrollbarWidth();
-  let menuMobile = $('.nav .mobile')
-  let menuNormal = $('.nav .normal')
+  let menuMobile = $(".nav .mobile");
+  let menuNormal = $(".nav .normal");
   if (width < 920) {
     $(".banner").css("display", "none");
     let img = $(".product-item:eq(1) img");
     let des = $(".product-item:eq(1) .description");
     img.insertBefore(des);
-    menuMobile.css('display','block')
-    menuNormal.css('display','none')
+    menuMobile.css("display", "block");
+    menuNormal.css("display", "none");
   }
   if (width > 920) {
     $(".banner").css("display", "block");
     let img = $(".product-item:eq(1) img");
     let des = $(".product-item:eq(1) .description");
     des.insertBefore(img);
-    menuMobile.css('display','blnoneck')
-    menuNormal.css('display','block')
+    menuMobile.css("display", "blnoneck");
+    menuNormal.css("display", "block");
   }
+  let clickMenuFlag = true;
+  $(".mobile img").click(function () {
+    if (clickMenuFlag) {
+      $(".mobile .mobile-nav").animate({
+        top: "80px",
+      });
+      clickMenuFlag = false;
+    }else{
+      $(".mobile .mobile-nav").animate({
+        top: "-200px",
+      });
+      clickMenuFlag = true;
+    }
+  });
 };
 window.addEventListener("resize", () => {
   getRem(750, 10);
-  let menuMobile = $('.nav .mobile')
-  let menuNormal = $('.nav .normal')
+  let menuMobile = $(".nav .mobile");
+  let menuNormal = $(".nav .normal");
   let width = $(document).width() + getScrollbarWidth();
   if (width < 920) {
-    menuMobile.css('display','block')
-    menuNormal.css('display','none')
+    menuMobile.css("display", "block");
+    menuNormal.css("display", "none");
   }
   if (width > 920) {
-    menuMobile.css('display','none')
-    menuNormal.css('display','block')
+    menuMobile.css("display", "none");
+    menuNormal.css("display", "block");
   }
 });
 
