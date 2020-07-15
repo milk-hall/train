@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
     <title>数码之家-新闻详情</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
@@ -25,23 +28,22 @@
             <a href="about.html"><li>关于我们</li></a>
           </ul>
         </div>
-        <div class="mobile"  style="display: none;">
-          <img src="./public/menu.png" alt="" width="35px" height="35px">
-          <div class="mobile-nav">
-            <ul>
-              <a href="index.html"><li>首页</li></a>
-              <a href="news.html"><li>新闻</li></a>
-              <a href="about.html"><li>关于我们</li></a>
-            </ul>
-          </div>
+        <div class="mobile" style="display: none;">
+          <img src="./public/menu.png" alt="" width="35px" height="35px" />
         </div>
       </div>
+      <div class="mobile-nav">
+        <ul>
+          <a href="index.html"><li>首页</li></a>
+          <a href="news.html"><li>新闻</li></a>
+          <a href="about.html"><li>关于我们</li></a>
+        </ul>
+      </div>
       <div class="loading" style="height: 800px;">loading...</div>
-
       <div class="content" style="display: none;">
         <h2 class="title"></h2>
         <h4 class="second-title">2020-7-14</h4>
-        <img src="" alt="" width="80%"/>
+        <img src="" alt="" width="80%" />
         <p></p>
       </div>
       <div class="footer">
@@ -66,9 +68,7 @@
           </div>
           <div class="contact-item">
             <img src="./public/code.png" alt="" />
-            <div>
-               
-            </div>
+            <div></div>
           </div>
         </div>
         <div class="copyright">
@@ -90,7 +90,7 @@
             $(".loading").css("display", "none");
             $(".news-detail .title").text(result.name);
             $(".news-detail .content img").attr("src", result.wallpaper);
-            $(".news-detail .content").css("display", 'flex');
+            $(".news-detail .content").css("display", "flex");
             $(".news-detail p").text(result.description);
           }, 1000);
         })

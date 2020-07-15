@@ -17,6 +17,7 @@ a {
   color: #fff;
   font-size: 0.8rem;
   position: relative;
+  z-index: 10;
 }
 .nav ul li {
   display: inline;
@@ -34,24 +35,24 @@ a {
   margin-right: 20px;
 }
 
-.nav .mobile-nav{
+.mobile-nav{
   position: absolute;
   background-color: #4f4f4f;
-  top:-200px;
-  height: auto;
+  top:-180px;
   left: 0;
   width: 100%;
   z-index: 1;
 }
-.nav .mobile-nav ul{
+.mobile-nav ul{
   margin: 0;
   padding: 0;
 }
-.nav .mobile-nav ul li{
+.mobile-nav ul li{
   display: block;
   padding: 10px 10px;
+  color: #fff;
 }
-.nav .mobile-nav ul li:hover{
+.mobile-nav ul li:hover{
   background-color: #3d4455;
 }
 .indexPage .banner {
@@ -229,6 +230,8 @@ a {
 .footer .contact img {
   width: 5rem;
   height: 5rem;
+  min-width: 80px;
+  min-height: 80px;
 }
 
 .footer .contact-item div {

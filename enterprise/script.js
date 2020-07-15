@@ -24,12 +24,12 @@ window.onload = function () {
   let clickMenuFlag = true;
   $(".mobile img").click(function () {
     if (clickMenuFlag) {
-      $(".mobile .mobile-nav").animate({
+      $(".mobile-nav").animate({
         top: "80px",
       });
       clickMenuFlag = false;
     }else{
-      $(".mobile .mobile-nav").animate({
+      $(".mobile-nav").animate({
         top: "-200px",
       });
       clickMenuFlag = true;
