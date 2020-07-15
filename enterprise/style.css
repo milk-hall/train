@@ -388,13 +388,13 @@ a {
 }
 .about .content .contact .contact-item > div {
   width: auto;
-  max-width: 300px;
+  max-width: 500px;
 }
 .about .content .contact .contact-item > img {
   width: 2rem;
   height: 2rem;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 40px;
+  min-height: 40px;
 }
 #allmap {
   width: 600px;
