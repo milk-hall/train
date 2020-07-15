@@ -13,12 +13,11 @@ module.exports = {
   // 目标文件
   entry: {
     index: path.resolve(__dirname, "./src/index.js"),
-    other: path.resolve(__dirname, "./src/other.js"),
   },
   // 自定义输出文件
   output: {
     path: path.resolve(__dirname, "./dist"), //路径
-    filename: "[name].bunld.js", //文件名称
+    filename: "bundle.js", //文件名称
   },
   // 配置webpack-dev-server
   devServer: {
@@ -45,16 +44,10 @@ module.exports = {
   plugins: [
     // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "battle.html",
-      title: "battle",
-      template:'src/battle.html',
-      chunks: ["index"],
-    }),
-    new HtmlWebpackPlugin({
-      filename: "hot.html",
-      title: "hot",
-      template:'src/hot.html',
-      chunks: ["index"],
+      filename: "index.html",
+      title: "index",
+      template:'src/index.html',
+      chunks: ["bundle.js"],
     }),
   ],
 };
