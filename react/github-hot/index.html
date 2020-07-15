@@ -218,7 +218,8 @@
             setLoading(false);
           })
           .catch(function (error) {
-            console.log(error);
+            alert("请求出错了！", error);
+            setData([]);
             setLoading(false);
           });
       }, [type]);
