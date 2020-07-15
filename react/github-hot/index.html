@@ -37,7 +37,6 @@
         isussCount,
         imgSrc,
         orderNumber,
-        loading,
       } = props;
       const commonStyle = {
         fontSize: "24px",
@@ -63,58 +62,52 @@
             padding: "10px 20px",
           }}
         >
-          {loading ? (
-            <div>
-              <i className="fa fa-spinner fa-spin"></i>
-            </div>
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "300px",
-                justifyContent: "center",
-                alignItems: "center",
-                margin: "20px 0",
-                background: "#eee",
-                padding: "10px 20px",
-              }}
-            >
-              <h1>#{orderNumber + 1}</h1>
-              <img src={imgSrc} alt="" width="200px" height="200px" />
-              <h3 style={{ color: "#bd3627", fontSize: "26px" }}>{author}</h3>
-              <div style={{ textAlign: "left", width: "100%" }}>
-                <div style={commonStyle}>
-                  <i
-                    className="fa fa-user"
-                    style={{ ...iconStyle, color: "#ffbf74" }}
-                  ></i>
-                  {author}
-                </div>
-                <div style={commonStyle}>
-                  <i
-                    className="fa fa-star"
-                    style={{ ...iconStyle, color: "#ffd701" }}
-                  ></i>
-                  {starCount}
-                </div>
-                <div style={commonStyle}>
-                  <i
-                    className="fa fa-code-fork"
-                    style={{ ...iconStyle, color: "#8dc6f3" }}
-                  ></i>
-                  {isussCount}
-                </div>
-                <div style={commonStyle}>
-                  <i
-                    className="fa fa-warning"
-                    style={{ ...iconStyle, color: "#f18d95" }}
-                  ></i>
-                  {isussCount}
-                </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "300px",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "20px 0",
+              background: "#eee",
+              padding: "10px 20px",
+            }}
+          >
+            <h1>#{orderNumber + 1}</h1>
+            <img src={imgSrc} alt="" width="200px" height="200px" />
+            <h3 style={{ color: "#bd3627", fontSize: "26px" }}>{author}</h3>
+            <div style={{ textAlign: "left", width: "100%" }}>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-user"
+                  style={{ ...iconStyle, color: "#ffbf74" }}
+                ></i>
+                {author}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-star"
+                  style={{ ...iconStyle, color: "#ffd701" }}
+                ></i>
+                {starCount}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-code-fork"
+                  style={{ ...iconStyle, color: "#8dc6f3" }}
+                ></i>
+                {isussCount}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-warning"
+                  style={{ ...iconStyle, color: "#f18d95" }}
+                ></i>
+                {isussCount}
               </div>
             </div>
-          )}
+          </div>
         </div>
       );
     };
@@ -175,29 +168,35 @@
             padding: "0 20%",
           }}
         >
-          {data.map((item, index) => {
-            const {
-              forks,
-              name,
-              stargazers_count,
-              open_issues_count,
-              owner: { avatar_url, login },
-            } = item;
-            return (
-              <div key={item.id}>
-                <ProductCard
-                  name={name}
-                  author={login}
-                  starCount={stargazers_count}
-                  forkCount={forks}
-                  isussCount={open_issues_count}
-                  imgSrc={avatar_url}
-                  orderNumber={index}
-                  loading={loading}
-                ></ProductCard>
-              </div>
-            );
-          })}
+          {loading ? (
+            <div>
+              <i className="fa fa-spinner fa-spin"></i>
+            </div>
+          ) : (
+            data.map((item, index) => {
+              const {
+                forks,
+                name,
+                stargazers_count,
+                open_issues_count,
+                owner: { avatar_url, login },
+              } = item;
+              return (
+                <div key={item.id}>
+                  <ProductCard
+                    name={name}
+                    author={login}
+                    starCount={stargazers_count}
+                    forkCount={forks}
+                    isussCount={open_issues_count}
+                    imgSrc={avatar_url}
+                    orderNumber={index}
+                    loading={loading}
+                  ></ProductCard>
+                </div>
+              );
+            })
+          )}
         </div>
       );
     };
