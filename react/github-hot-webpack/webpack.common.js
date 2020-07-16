@@ -35,6 +35,9 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".jsx", ".json"],
+    alias: {
+      "@": path.resolve("src"),
+    },
   },
   module: {
     rules: [

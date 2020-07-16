@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Layout from "@/components/Layout";
 import Header from "./Header";
 import Content from "./Content";
 
@@ -26,10 +27,10 @@ const GitHubHot = () => {
       });
   }, [type]);
   return (
-    <div>
+    <Layout>
       <Header setType={setType}></Header>
       <Content data={data} loading={loading}></Content>
-    </div>
+    </Layout>
   );
 };
 
