@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import ProductCard from "./ProductCard";
 
 const { useState } = require("react");
@@ -49,4 +49,4 @@ const Content = (props) => {
   );
 };
 
-export default Content
+export default Content;

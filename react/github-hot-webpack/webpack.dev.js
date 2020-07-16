@@ -4,7 +4,7 @@ const common = require("./webpack.common.js");
 module.exports = merge(common, {
   mode: "development",
   //开启sourcemap
-  devtool: "cheap-module-eval-source-map",
+  // devtool: "cheap-module-eval-source-map",
   devServer: {
     stats: "errors-only",
     //默认地址 localhost

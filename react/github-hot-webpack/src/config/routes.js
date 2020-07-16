@@ -4,11 +4,6 @@ import BattleResult from "@/pages/BattleResult";
 import BattleContainer from "@/components/BattleContainer";
 const routes = [
   {
-    path: "/",
-    exact: true,
-    component: Battle,
-  },
-  {
     path: "/popular",
     exact: true,
     component: Popular,
@@ -18,14 +13,12 @@ const routes = [
     component: BattleContainer,
     routes: [
       {
-        path: "/battle",
-        exact: true,
+        path: "/battle/index",
         component: Battle,
       },
       {
-        path: "/battle/result",
+        path: "/battle/result/:battle",
         component: BattleResult,
-        exact: true,
       },
     ],
   },

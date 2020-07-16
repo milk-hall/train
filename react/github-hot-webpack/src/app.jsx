@@ -1,13 +1,25 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import { renderRoutes } from "react-router-config";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import routes from "@/config/routes";
+import Header from "@/components/Header";
+import RouteWithSubRoutes from "@/components/RouteWithSubRoutes";
 class App extends React.Component {
   constructor() {
     super();
   }
   render() {
-    return <div>{renderRoutes(routes)}</div>;
+    return (
+      <div>
+        <Header></Header>
+        <Switch>
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+          <Redirect to='/popular'/>
+        </Switch>
+      </div>
+    );
   }
 }
+
 export default App;

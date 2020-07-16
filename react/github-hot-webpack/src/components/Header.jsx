@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const [pages, setPages] = useState(["battle", "popular"]);
-  const { path } = useRouteMatch();
+  const [pages, setPages] = useState(["popular", "battle"]);
   const [active, setActive] = useState(0);
   const history = useHistory();
+  const { pathname } = useLocation();
   const handleClick = (name, index) => {
-    if (path.includes(name)) return;
+    if (pathname.includes(name)) return;
     setActive(index);
     history.push(`/${name}`);
   };
   useEffect(() => {
-    setActive(pages.indexOf(path.replace("/", "")));
-  }, [path]);
+    setActive(pages.indexOf(pathname.replace("/", "")) !== -1 ? 0 : 1);
+  }, [pathname]);
   return (
     <div>
       <div style={{ height: "60px", paddingLeft: "100px" }}>
