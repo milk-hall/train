@@ -1,27 +1,21 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const { useState } = require("react");
-
 const Content = (props) => {
   const { data, loading } = props;
-  const [allData, setAllData] = useState([]);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        alignItems: "center",
-        padding: "0 20%",
-      }}
-    >
-      {loading ? (
-        <div>
-          <i className="fa fa-spinner fa-spin"></i>
-        </div>
-      ) : (
-        data.map((item, index) => {
+    <>
+      {" "}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          alignItems: "center",
+          padding: "0 20%",
+        }}
+      >
+        {data.map((item, index) => {
           const {
             forks,
             name,
@@ -30,7 +24,9 @@ const Content = (props) => {
             owner: { avatar_url, login },
           } = item;
           return (
-            <div key={item.id}>
+            <div
+              key={item.id}
+            >
               <ProductCard
                 name={name}
                 author={login}
@@ -43,9 +39,23 @@ const Content = (props) => {
               ></ProductCard>
             </div>
           );
-        })
+        })}
+      </div>{" "}
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            alignItems: "center",
+            padding: "0 20%",
+            margin: "40px",
+          }}
+        >
+          <i className="fa fa-spinner fa-spin"></i>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

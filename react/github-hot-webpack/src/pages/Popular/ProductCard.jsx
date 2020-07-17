@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 const ProductCard = (props) => {
   const {
     // name,
@@ -31,6 +31,7 @@ const ProductCard = (props) => {
         margin: "20px 0",
         background: "#eee",
         padding: "10px 20px",
+        height: "544px",
       }}
     >
       <div
@@ -82,4 +83,4 @@ const ProductCard = (props) => {
   );
 };
 
-export default ProductCard
+export default ProductCard;

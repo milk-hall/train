@@ -102,7 +102,12 @@ const Battle = () => {
                 height: "50px",
               }}
             />
-            <span>{userInfo1.login}</span>
+            <span style={{ margin: "0 40px" }}>{userInfo1.login}</span>
+            <i
+              className="fa fa-close"
+              style={{ fontSize: "24px", cursor: "pointer" }}
+              onClick={() => setUserInfo1({})}
+            ></i>
           </div>
         ) : (
           <div>
@@ -141,7 +146,12 @@ const Battle = () => {
                 height: "50px",
               }}
             />
-            <span>{userInfo2.login}</span>
+            <span style={{ margin: "0 40px" }}>{userInfo2.login}</span>
+            <i
+              className="fa fa-close"
+              style={{ fontSize: "24px", cursor: "pointer" }}
+              onClick={() => setUserInfo2({})}
+            ></i>
           </div>
         ) : (
           <div style={{ marginLeft: "200px" }}>
