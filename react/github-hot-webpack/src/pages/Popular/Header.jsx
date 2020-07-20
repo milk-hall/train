@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const Header = (props) => {
   const { setType } = props;
   const [active, setActive] = useState(0);
-  const [typeArr, setTypeArr] = useState([
+  const [typeArr] = useState([
     'All',
     'JavaScript',
     'Ruby',
