@@ -10,11 +10,11 @@ export default {
 
   effects: {
     *getData(action, { call, put }) {
-      const data = yield call(() => request.get("/products.json"));
+      const data = yield call(() => request.get("./products.json"));
       yield put({ type: "save", payload: data });
     },
     *filter({ payload }, { call, put }) {
-      const data = yield call(() => request.get("/products.json"));
+      const data = yield call(() => request.get("./products.json"));
       const filterData = data.products.filter((item) =>
         item.availableSizes.includes(payload)
       );

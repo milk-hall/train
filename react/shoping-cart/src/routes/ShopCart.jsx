@@ -88,7 +88,7 @@ class ShopCart extends React.Component {
                 <div key={item.id + item.size} className="cart-item">
                   <div>
                     <img
-                      src={`/static/products/${item.sku}_1.jpg`}
+                      src={`./static/products/${item.sku}_1.jpg`}
                       alt=""
                       height="80"
                     ></img>

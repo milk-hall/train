@@ -23,7 +23,7 @@ const ShopCard = (props) => {
   return (
     <div className="shop-card">
       <img
-        src={`/static/products/${sku}_1.jpg`}
+        src={`./static/products/${sku}_1.jpg`}
         alt=""
         width="180"
         height="240"
