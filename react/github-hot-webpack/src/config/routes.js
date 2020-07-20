@@ -1,23 +1,24 @@
-import Popular from "@/pages/Popular";
-import Battle from "@/pages/Battle";
-import BattleResult from "@/pages/BattleResult";
-import BattleContainer from "@/components/BattleContainer";
+import Popular from '@/pages/Popular';
+import Battle from '@/pages/Battle';
+import BattleResult from '@/pages/BattleResult';
+import BattleContainer from '@/components/BattleContainer';
+
 const routes = [
   {
-    path: "/popular",
+    path: '/popular',
     exact: true,
     component: Popular,
   },
   {
-    path: "/battle",
+    path: '/battle',
     component: BattleContainer,
     routes: [
       {
-        path: "/battle/index",
+        path: '/battle/index',
         component: Battle,
       },
       {
-        path: "/battle/result/:battle",
+        path: '/battle/result/:battle',
         component: BattleResult,
       },
     ],

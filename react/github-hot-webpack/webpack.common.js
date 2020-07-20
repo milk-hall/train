@@ -33,6 +33,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module",
+  },
   resolve: {
     extensions: [".js", ".jsx", ".json"],
     alias: {
@@ -51,11 +55,7 @@ module.exports = {
       },
       {
         test: /\.js|jsx$/,
-        use: [
-          {
-            loader: "babel-loader",
-          },
-        ],
+        use: ["babel-loader", "eslint-loader"],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,

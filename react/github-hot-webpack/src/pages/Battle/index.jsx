@@ -1,36 +1,37 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 const Battle = () => {
   const [userInfo1, setUserInfo1] = useState({});
   const [userInfo2, setUserInfo2] = useState({});
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
   const history = useHistory();
   const arr = [
     {
-      name: "Enter two Github users",
-      className: "fa fa-users",
-      style: { color: "#ffbf74", fontSize: "128px" },
+      name: 'Enter two Github users',
+      className: 'fa fa-users',
+      style: { color: '#ffbf74', fontSize: '128px' },
     },
     {
-      name: "Battle",
-      className: "fa fa-plane",
-      style: { color: "#727272", fontSize: "128px" },
+      name: 'Battle',
+      className: 'fa fa-plane',
+      style: { color: '#727272', fontSize: '128px' },
     },
     {
-      name: "See the winner",
-      className: "fa fa-trophy",
-      style: { color: "#ffd701", fontSize: "128px" },
+      name: 'See the winner',
+      className: 'fa fa-trophy',
+      style: { color: '#ffd701', fontSize: '128px' },
     },
   ];
   const inputStyle = {
-    height: "30px",
-    width: "220px",
+    height: '30px',
+    width: '220px',
   };
   const submitStyle = {
-    width: "120px",
-    height: "36px",
+    width: '120px',
+    height: '36px',
   };
 
   const handleSubmit = (index) => {
@@ -44,70 +45,62 @@ const Battle = () => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: 'center' }}>
       <h1>Instructions</h1>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {arr.map((item) => {
-          return (
-            <div key={item.name}>
-              <h3>{item.name}</h3>
-              <div
-                style={{
-                  margin: "20px",
-                  padding: "20px",
-                  background: "#ebebeb",
-                  width: "180px",
-                  height: "180px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <i className={item.className} style={item.style}></i>
-              </div>
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        {arr.map((item) => (
+          <div key={item.name}>
+            <h3>{item.name}</h3>
+            <div
+              style={{
+                  margin: '20px',
+                  padding: '20px',
+                  background: '#ebebeb',
+                  width: '180px',
+                  height: '180px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+              <i className={item.className} style={item.style} />
             </div>
-          );
-        })}
+          </div>
+          ))}
       </div>
       <h2>Players</h2>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         {userInfo1.avatar_url ? (
           <div
             style={{
-              width: "348px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              background: "#DDDDDD",
-              padding: "20px",
-            }}
-          >
-            <img
+              width: '348px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              background: '#DDDDDD',
+              padding: '20px',
+            }}>
+            <image
               src={userInfo1.avatar_url}
               alt="picture"
               style={{
-                width: "50px",
-                height: "50px",
-              }}
-            />
-            <span style={{ margin: "0 40px" }}>{userInfo1.login}</span>
+                width: '50px',
+                height: '50px',
+              }} />
+            <span style={{ margin: '0 40px' }}>{userInfo1.login}</span>
             <i
               className="fa fa-close"
-              style={{ fontSize: "24px", cursor: "pointer" }}
-              onClick={() => setUserInfo1({})}
-            ></i>
+              style={{ fontSize: '24px', cursor: 'pointer' }}
+              onClick={() => setUserInfo1({})} />
           </div>
         ) : (
           <div>
@@ -115,13 +108,11 @@ const Battle = () => {
               type="text"
               style={inputStyle}
               value={input1}
-              onChange={(e) => setInput1(e.target.value)}
-            />
+              onChange={(e) => setInput1(e.target.value)} />
             <button
               style={submitStyle}
               disabled={!input1}
-              onClick={() => handleSubmit(1)}
-            >
+              onClick={() => handleSubmit(1)}>
               submit
             </button>
           </div>
@@ -129,43 +120,38 @@ const Battle = () => {
         {userInfo2.avatar_url ? (
           <div
             style={{
-              width: "348px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              background: "#DDDDDD",
-              padding: "20px",
-              marginLeft: "200px",
-            }}
-          >
-            <img
+              width: '348px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              background: '#DDDDDD',
+              padding: '20px',
+              marginLeft: '200px',
+            }}>
+            <image
               src={userInfo2.avatar_url}
               alt="picture"
               style={{
-                width: "50px",
-                height: "50px",
-              }}
-            />
-            <span style={{ margin: "0 40px" }}>{userInfo2.login}</span>
+                width: '50px',
+                height: '50px',
+              }} />
+            <span style={{ margin: '0 40px' }}>{userInfo2.login}</span>
             <i
               className="fa fa-close"
-              style={{ fontSize: "24px", cursor: "pointer" }}
-              onClick={() => setUserInfo2({})}
-            ></i>
+              style={{ fontSize: '24px', cursor: 'pointer' }}
+              onClick={() => setUserInfo2({})} />
           </div>
         ) : (
-          <div style={{ marginLeft: "200px" }}>
+          <div style={{ marginLeft: '200px' }}>
             <input
               type="text"
               style={inputStyle}
               value={input2}
-              onChange={(e) => setInput2(e.target.value)}
-            />
+              onChange={(e) => setInput2(e.target.value)} />
             <button
               style={submitStyle}
               disabled={!input2}
-              onClick={() => handleSubmit(2)}
-            >
+              onClick={() => handleSubmit(2)}>
               submit
             </button>
           </div>
@@ -173,13 +159,12 @@ const Battle = () => {
       </div>
       {userInfo1.avatar_url && userInfo2.avatar_url && (
         <button
-          style={{ ...submitStyle, marginTop: "50px" }}
+          style={{ ...submitStyle, marginTop: '50px' }}
           onClick={() => {
             history.push(
-              `/battle/result/${userInfo1.login}&battle&${userInfo2.login}`
+              `/battle/result/${userInfo1.login}&battle&${userInfo2.login}`,
             );
-          }}
-        >
+          }}>
           BATTLE
         </button>
       )}

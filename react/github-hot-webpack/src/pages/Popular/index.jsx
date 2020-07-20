@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Header from "./Header";
-import Content from "./Content";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Header from './Header';
+import Content from './Content';
 
 const GitHubHot = () => {
-  const [type, setType] = useState("all");
+  const [type, setType] = useState('all');
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     const height = document.documentElement.clientHeight;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
+    const { scrollHeight } = document.documentElement;
+    const { scrollTop } = document.documentElement;
     if (scrollTop + height >= scrollHeight - 5 && !loading) {
       setLoading(true);
       setPage(page + 1);
@@ -25,16 +25,17 @@ const GitHubHot = () => {
     axios
       .get(
         `https://api.github.com/search/repositories?q=stars:%3E1${
-          type !== "all" ? `+language:${type}` : ""
-        }&sort=stars&order=desc&type=Repositories`
+          type !== 'all' ? `+language:${type}` : ''
+        }&sort=stars&order=desc&type=Repositories`,
       )
-      .then(function ({ data: res }) {
+      .then(({ data: res }) => {
         setData(res.items);
         setLoading(false);
         setPage(page + 1);
       })
-      .catch(function (error) {
-        alert("请求出错了！", error);
+      .catch((error) => {
+        // eslint-disable-next-line no-alert
+        alert('请求出错了！', error);
         setData([]);
         setLoading(false);
       });
@@ -45,15 +46,16 @@ const GitHubHot = () => {
       axios
         .get(
           `https://api.github.com/search/repositories?q=stars:%3E1${
-            type !== "all" ? `+language:${type}` : ""
-          }&sort=stars&order=desc&type=Repositories&page=${page}`
+            type !== 'all' ? `+language:${type}` : ''
+          }&sort=stars&order=desc&type=Repositories&page=${page}`,
         )
-        .then(function ({ data: res }) {
+        .then(({ data: res }) => {
           setData([...data, ...res.items]);
           setLoading(false);
         })
-        .catch(function (error) {
-          alert("请求出错了！", error);
+        .catch((error) => {
+          // eslint-disable-next-line no-alert
+          alert('请求出错了！', error);
           setData([]);
           setLoading(false);
         });
@@ -62,8 +64,8 @@ const GitHubHot = () => {
 
   return (
     <div>
-      <Header setType={setType}></Header>
-      <Content data={data} loading={loading}></Content>
+      <Header setType={setType} />
+      <Content data={data} loading={loading} />
     </div>
   );
 };
