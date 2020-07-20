@@ -11,11 +11,7 @@
     "server": "webpack-dev-server --config webpack.dev.js --mode development",
     "lint:fix": "eslint --fix --ext .js --ext .jsx src"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint:fix"
-    }
-  },
+  "pre-commit": "lint:fix",
   "keywords": [],
   "author": "",
   "license": "ISC",
