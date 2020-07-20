@@ -1,19 +1,25 @@
 import React from "react";
 import "./ShopCard.less";
-import { Button } from "antd";
-
-
+import { Button, Menu, Dropdown } from "antd";
+import { connect } from "dva";
 
 const ShopCard = (props) => {
-  const {
-    title,
-    isFreeShipping,
-    price,
-    installments,
-    availableSizes,
-    style,
-    sku,
-  } = props;
+  const { title, price, id, availableSizes, style, sku, dispatch } = props;
+  const handleAddToCart = (size) => {
+    dispatch({
+      type: "cart/add",
+      payload: { id, title, price, size, sku, style },
+    });
+  };
+  const menu = (
+    <Menu>
+      {availableSizes.map((item) => (
+        <Menu.Item key={item} onClick={() => handleAddToCart(item)}>
+          <span>{item}</span>
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
   return (
     <div className="shop-card">
       <img
@@ -22,14 +28,26 @@ const ShopCard = (props) => {
         width="180"
         height="240"
       />
-      <div>{title}</div>
+      <h3
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+        }}
+      >
+        {title}
+      </h3>
+      <h4>{style}</h4>
       <div className="price">
-        $<span className='before'>{`${price}`.split(".")[0]}</span>
-        {`${price}`.split(".")[1]?('.'+`${price}`.split(".")[1]):'.00'}
+        $<span className="before">{`${price}`.split(".")[0]}</span>
+        {`.${price.toFixed(2).split(".")[1]}`}
       </div>
-      <Button type="primary" style={{width:'100%'}}>Add to Cart</Button>
+      <Dropdown overlay={menu} placement="topRight">
+        <Button type="primary" style={{ width: "100%" }}>
+          Add to Cart
+        </Button>
+      </Dropdown>
     </div>
   );
 };
 
-export default ShopCard;
+export default connect()(ShopCard);
