@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import request from '@/utils/request';
 
 const Battle = () => {
   const [userInfo1, setUserInfo1] = useState({});
@@ -34,14 +34,11 @@ const Battle = () => {
     height: '36px',
   };
 
-  const handleSubmit = (index) => {
-    index === 1
-      ? axios.get(`https://api.github.com/users/${input1}`).then(({ data }) => {
-          setUserInfo1(data);
-        })
-      : axios.get(`https://api.github.com/users/${input2}`).then(({ data }) => {
-          setUserInfo2(data);
-        });
+  const handleSubmit = async (index) => {
+    const data = await request.get(
+      `https://api.github.com/users/${index === 1 ? input1 : input2}`,
+    );
+    index === 1 ? setUserInfo1(data) : setUserInfo2(data);
   };
 
   return (
@@ -58,19 +55,19 @@ const Battle = () => {
             <h3>{item.name}</h3>
             <div
               style={{
-                  margin: '20px',
-                  padding: '20px',
-                  background: '#ebebeb',
-                  width: '180px',
-                  height: '180px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
+                margin: '20px',
+                padding: '20px',
+                background: '#ebebeb',
+                width: '180px',
+                height: '180px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
               <i className={item.className} style={item.style} />
             </div>
           </div>
-          ))}
+        ))}
       </div>
       <h2>Players</h2>
       <div
@@ -89,9 +86,9 @@ const Battle = () => {
               background: '#DDDDDD',
               padding: '20px',
             }}>
-            <image
+            <img
               src={userInfo1.avatar_url}
-              alt="picture"
+              alt="user1"
               style={{
                 width: '50px',
                 height: '50px',
@@ -108,11 +105,16 @@ const Battle = () => {
               type="text"
               style={inputStyle}
               value={input1}
-              onChange={(e) => setInput1(e.target.value)} />
+              onChange={(e) => setInput1(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.keyCode !== 13) return;
+                handleSubmit(1);
+              }} />
             <button
               style={submitStyle}
               disabled={!input1}
-              onClick={() => handleSubmit(1)}>
+              onClick={() => handleSubmit(1)}
+              onSubmit={() => handleSubmit(1)}>
               submit
             </button>
           </div>
@@ -128,9 +130,9 @@ const Battle = () => {
               padding: '20px',
               marginLeft: '200px',
             }}>
-            <image
+            <img
               src={userInfo2.avatar_url}
-              alt="picture"
+              alt="user2"
               style={{
                 width: '50px',
                 height: '50px',

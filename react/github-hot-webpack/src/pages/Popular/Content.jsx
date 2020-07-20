@@ -14,7 +14,7 @@ const Content = (props) => {
           alignItems: 'center',
           padding: '0 20%',
         }}>
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           const {
             forks,
             name,

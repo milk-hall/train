@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import axios from 'axios';
+import request from '@/utils/request';
 
 const BattleResult = () => {
   const { battle } = useParams();
   const [infoArr, setInfoArr] = useState([]);
   const history = useHistory();
   useEffect(() => {
-    const user1 = battle.split('&battle&')[0];
-    const user2 = battle.split('&battle&')[1];
-    const p1 = axios
-      .get(`https://api.github.com/users/${user1}`)
-      .then(({ data }) => data);
-    const p2 = axios
-      .get(`https://api.github.com/users/${user2}`)
-      .then(({ data }) => data);
-    Promise.all([p1, p2]).then((res) => setInfoArr(res));
+    setTimeout(async () => {
+      const user1 = battle.split('&battle&')[0];
+      const user2 = battle.split('&battle&')[1];
+      const p1 = await request.get(`https://api.github.com/users/${user1}`);
+      const p2 = await request.get(`https://api.github.com/users/${user2}`);
+      setInfoArr([p1, p2]);
+    });
   }, []);
   const commonStyle = {
     fontSize: '22px',
@@ -40,15 +38,15 @@ const BattleResult = () => {
         <div
           key={item.login + index}
           style={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '230px',
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: '40px',
-              background: '#eee',
-              padding: '10px',
-            }}>
+            display: 'flex',
+            flexDirection: 'column',
+            width: '230px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: '40px',
+            background: '#eee',
+            padding: '10px',
+          }}>
           <h3>{item.name}</h3>
           <img src={item.avatar_url} alt="" width="200px" height="200px" />
           <div>
@@ -82,7 +80,7 @@ const BattleResult = () => {
             </div>
           </div>
         </div>
-        ))}
+      ))}
       {infoArr.length && (
         <div
           style={{
