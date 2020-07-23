@@ -163,9 +163,10 @@ const Battle = () => {
         <button
           style={{ ...submitStyle, marginTop: '50px' }}
           onClick={() => {
-            history.push(
-              `/battle/result/${userInfo1.login}&battle&${userInfo2.login}`,
-            );
+            history.push({
+              pathname: '/battle/result',
+              search: `?user1=${userInfo1.login}&user2=${userInfo2.login}`,
+            });
           }}>
           BATTLE
         </button>

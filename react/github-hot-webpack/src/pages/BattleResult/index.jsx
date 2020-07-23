@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import request from '@/utils/request';
 
-const BattleResult = () => {
-  const { battle } = useParams();
+const BattleResult = (props) => {
+  const battle = useLocation();
   const [infoArr, setInfoArr] = useState([]);
   const history = useHistory();
   useEffect(() => {
     setTimeout(async () => {
-      const user1 = battle.split('&battle&')[0];
-      const user2 = battle.split('&battle&')[1];
+      const userArr = battle.search.slice(1, -1).split('&');
+      const user1 = userArr.slice(3, -1)[0];
+      const user2 = userArr.slice(3, -1)[1];
       const p1 = await request.get(`https://api.github.com/users/${user1}`);
       const p2 = await request.get(`https://api.github.com/users/${user2}`);
       setInfoArr([p1, p2]);

@@ -18,7 +18,7 @@ const routes = [
         component: Battle,
       },
       {
-        path: '/battle/result/:battle',
+        path: '/battle/result',
         component: BattleResult,
       },
     ],
