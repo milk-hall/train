@@ -113,7 +113,7 @@ class ShopCart extends React.Component {
             })}
           </div>
           <div style={{ height: "100px" }}>
-            {carts && (
+            {carts?.length>0 && (
               <div>
                 <div>
                   <div>
