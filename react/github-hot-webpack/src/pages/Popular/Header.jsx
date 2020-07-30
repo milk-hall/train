@@ -3,13 +3,7 @@ import React, { useState } from 'react';
 const Header = (props) => {
   const { setType } = props;
   const [active, setActive] = useState(0);
-  const [typeArr] = useState([
-    'All',
-    'JavaScript',
-    'Ruby',
-    'Java',
-    'Python',
-  ]);
+  const [typeArr] = useState(['All', 'JavaScript', 'Ruby', 'Java', 'Python']);
   const activeStyle = {
     color: '#c04539',
     margin: '0 10px',
@@ -27,7 +21,13 @@ const Header = (props) => {
   };
   return (
     <div>
-      <div style={{ width: '100%', textAlign: 'center', margin: '20px 0' }}>
+      <div
+        style={{
+          width: '100%',
+          textAlign: 'center',
+          margin: '20px 0',
+          overflowWrap: 'break-word',
+        }}>
         {typeArr.map((item, index) => (
           <span
             style={index === active ? activeStyle : commonStyle}
@@ -35,7 +35,7 @@ const Header = (props) => {
             key={item}>
             {item}
           </span>
-          ))}
+        ))}
       </div>
     </div>
   );
