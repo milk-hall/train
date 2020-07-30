@@ -41,7 +41,7 @@ const ShopCard = (props) => {
         $<span className="before">{`${price}`.split(".")[0]}</span>
         {`.${price.toFixed(2).split(".")[1]}`}
       </div>
-      <Dropdown overlay={menu} placement="topRight">
+      <Dropdown overlay={menu} placement="topRight" trigger="click">
         <Button type="primary" style={{ width: "100%" }}>
           Add to Cart
         </Button>

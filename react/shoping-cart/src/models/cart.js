@@ -55,11 +55,16 @@ export default {
       const findIndex = carts.findIndex((value) => {
         return value.id === data.id && value.size === data.size;
       });
-      let newArr = [...carts];
-      newArr[findIndex] = {
-        ...newArr[findIndex],
-        count: count,
-      };
+      let newArr;
+      if (count === 0) {
+        newArr = carts.filter(item => !(item.id === data.id && item.size === data.size))
+      } else {
+        newArr = [...carts];
+        newArr[findIndex] = {
+          ...newArr[findIndex],
+          count: count,
+        };
+      }
       const json = JSON.stringify(newArr);
       localStorage.setItem("cart", json);
       return { carts: newArr };
