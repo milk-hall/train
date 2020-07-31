@@ -10,7 +10,7 @@
     "watch": "webpack --mode production --watch",
     "server": "webpack-dev-server --config webpack.dev.js --mode development",
     "lint:fix": "eslint --fix --ext .js --ext .jsx src",
-    "deploy": "npx gh-pages -d popular -e react/popular"
+    "deploy": "npx gh-pages -d ./popular -e react/popular"
   },
   "pre-commit": "lint:fix",
   "keywords": [],
