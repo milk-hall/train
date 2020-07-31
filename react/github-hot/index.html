@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./public/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <title>github热门站点</title>
+  </head>
+  <body style="margin: 0;">
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@16/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+  ></script>
+  <!-- babel是解析JSX必备的库 -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script type="text/babel">
+    const useEffect = React.useEffect;
+    const useState = React.useState;
+    const useRef = React.useRef;
+    const ProductCard = (props) => {
+      const {
+        // name,
+        author,
+        starCount,
+        forkCount,
+        isussCount,
+        imgSrc,
+        orderNumber,
+      } = props;
+      const commonStyle = {
+        fontSize: "22px",
+        lineHeight: "22px",
+        margin: "5px 0",
+      };
+      const iconStyle = {
+        height: "22px",
+        width: "22px",
+        textAlign: "center",
+        marginRight: "10px",
+      };
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "230px",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0",
+            background: "#eee",
+            padding: "10px 20px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "230px",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "20px 0",
+              background: "#eee",
+            }}
+          >
+            <h1>#{orderNumber + 1}</h1>
+            <img src={imgSrc} alt="" width="200px" height="200px" />
+            <h3 style={{ color: "#bd3627", fontSize: "26px" }}>{author}</h3>
+            <div style={{ textAlign: "left", width: "100%" }}>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-user"
+                  style={{ ...iconStyle, color: "#ffbf74" }}
+                ></i>
+                {author}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-star"
+                  style={{ ...iconStyle, color: "#ffd701" }}
+                ></i>
+                {starCount}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-code-fork"
+                  style={{ ...iconStyle, color: "#8dc6f3" }}
+                ></i>
+                {forkCount}
+              </div>
+              <div style={commonStyle}>
+                <i
+                  className="fa fa-warning"
+                  style={{ ...iconStyle, color: "#f18d95" }}
+                ></i>
+                {isussCount}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    const Header = (props) => {
+      const { setType } = props;
+      const [active, setActive] = useState(0);
+      const [typeArr, setTypeArr] = useState([
+        "All",
+        "JavaScript",
+        "Ruby",
+        "Java",
+        "Python",
+      ]);
+      const activeStyle = {
+        color: "#c04539",
+        margin: "0 10px",
+        fontSize: "24px",
+        cursor: "pointer",
+      };
+      const commonStyle = {
+        margin: "0 10px",
+        fontSize: "24px",
+        cursor: "pointer",
+      };
+      const handleClick = (index) => {
+        setActive(index);
+        setType(typeArr[index]);
+      };
+      return (
+        <div>
+          <div style={{ width: "100%", textAlign: "center", margin: "20px 0" }}>
+            {typeArr.map((item, index) => {
+              return (
+                <span
+                  style={index === active ? activeStyle : commonStyle}
+                  onClick={() => handleClick(index)}
+                  key={item}
+                >
+                  {item}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      );
+    };
+
+    const Content = (props) => {
+      const { data, loading } = props;
+      const [allData, setAllData] = useState([]);
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            alignItems: "center",
+            padding: "0 20%",
+          }}
+        >
+          {loading ? (
+            <div>
+              <i className="fa fa-spinner fa-spin"></i>
+            </div>
+          ) : (
+            data.map((item, index) => {
+              const {
+                forks,
+                name,
+                stargazers_count,
+                open_issues_count,
+                owner: { avatar_url, login },
+              } = item;
+              return (
+                <div key={item.id}>
+                  <ProductCard
+                    name={name}
+                    author={login}
+                    starCount={stargazers_count}
+                    forkCount={forks}
+                    isussCount={open_issues_count}
+                    imgSrc={avatar_url}
+                    orderNumber={index}
+                    loading={loading}
+                  ></ProductCard>
+                </div>
+              );
+            })
+          )}
+        </div>
+      );
+    };
+    const GitHubHot = () => {
+      const [type, setType] = useState("all");
+      const [loading, setLoading] = useState(true);
+      const [data, setData] = useState([]);
+      useEffect(() => {
+        setLoading(true);
+        axios
+          .get(
+            `https://api.github.com/search/repositories?q=stars:%3E1${
+              type !== "all" ? `+language:${type}` : ""
+            }&sort=stars&order=desc&type=Repositories`
+          )
+          .then(function ({ data }) {
+            setData(data.items);
+            setLoading(false);
+          })
+          .catch(function (error) {
+            alert("请求出错了！", error);
+            setData([]);
+            setLoading(false);
+          });
+      }, [type]);
+      return (
+        <div>
+          <Header setType={setType}></Header>
+          <Content data={data} loading={loading}></Content>
+        </div>
+      );
+    };
+    ReactDOM.render(
+      <div>
+        <GitHubHot />
+      </div>,
+      document.getElementById("root")
+    );
+  </script>
+</html>
