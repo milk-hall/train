@@ -8,7 +8,7 @@ module.exports = {
   entry: [path.resolve(__dirname, './src/index.js')],
   // 自定义输出文件
   output: {
-    path: path.resolve(__dirname, './popular'), // 路径
+    path: path.resolve(__dirname, './dist'), // 路径
     filename: 'bundle.js', // 文件名称
   },
   // 插件
