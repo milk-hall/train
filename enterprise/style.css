@@ -374,7 +374,7 @@ a {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding: 50px;
 }
 .about .content .introduce {
   display: flex;
@@ -384,7 +384,7 @@ a {
 }
 .about .content .contact {
   width: 600px;
-  height: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -399,6 +399,7 @@ a {
   width: auto;
   display: flex;
   align-items: center;
+  margin: 10px;
 }
 .about .content .contact .contact-item > div {
   width: auto;
@@ -412,5 +413,10 @@ a {
 }
 #allmap {
   width: 600px;
-  min-height: 200px;
+  min-height: 300px;
+  height: auto;
+}
+
+.banner .slide>li{
+  cursor: pointer;
 }

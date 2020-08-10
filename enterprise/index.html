@@ -1,201 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
-    <title>数码之家-首页</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    <div class="indexPage">
-      <div class="header">
-        <div class="nav">
-          <a href="index.html">
-            <div class="home">
-              <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
-              <span style="line-height: 40px;">数码之家</span>
-            </div>
-          </a>
-          <div class="normal" style="display: none;">
-            <ul>
-              <a href="index.html"><li>首页</li></a>
-              <a href="news.html"><li>新闻</li></a>
-              <a href="about.html"><li>关于我们</li></a>
-            </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>数码之家-首页</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="indexPage">
+    <div class="header">
+      <div class="nav">
+        <a href="index.html">
+          <div class="home">
+            <img src="./public/avatar.jpg" alt="" width="40px" height="40px" />
+            <span style="line-height: 40px;">数码之家</span>
           </div>
-          <div class="mobile" style="display: none;">
-            <img src="./public/menu.png" alt="" width="30px" height="30px" />
-          </div>
+        </a>
+        <div class="normal" style="display: none;">
+          <ul>
+            <a href="index.html">
+              <li>首页</li>
+            </a>
+            <a href="news.html">
+              <li>新闻</li>
+            </a>
+            <a href="about.html">
+              <li>关于我们</li>
+            </a>
+          </ul>
         </div>
-        
-      </div>
-      <div class="mobile-nav">
-        <ul>
-          <a href="index.html"><li>首页</li></a>
-          <a href="news.html"><li>新闻</li></a>
-          <a href="about.html"><li>关于我们</li></a>
-        </ul>
-      </div>
-      <div class="banner">
-        <ul class="slide">
-          <li>
-            <img src="./public/banner/1b409e11e58627ed.jpg" alt="" srcset="" />
-          </li>
-          <li>
-            <img src="./public/banner/7fa63f6a3f837c34.jpg" alt="" srcset="" />
-          </li>
-          <li>
-            <img src="./public/banner/951ae72b2bf7edf2.jpg" alt="" srcset="" />
-          </li>
-          <li>
-            <img src="./public/banner/e91577c15269fddf.jpg" alt="" srcset="" />
-          </li>
-        </ul>
-        <ul class="active">
-          <li class="slide-active">1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ul>
-      </div>
-      <div class="content">
-        <h1>服务范围</h1>
-        <div>
-          <h2>新品介绍</h2>
-          <div class="product">
-            <div class="product-item">
-              <img src="./public/newProduct/华为matebook14.jpg" alt="" />
-              <div class="description">
-                <h4>华为HUAWEI MateBook 14 2020</h4>
-                <p>
-                  华为HUAWEI MateBook 14 2020款全面屏轻薄笔记本电脑 十代酷睿(i5
-                  16G 512G MX350 触控屏 多屏协同)灰
-                </p>
-                <p class="info">
-                  2k炫丽全面屏，搭配MX350版独立显卡，超轻薄金属机身，多点触控，指纹识别，配合多屏协同畅享劲酷体验！
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="product">
-            <div class="product-item">
-              <div class="description">
-                <h4>联想(Lenovo)小新Air14</h4>
-                <p>
-                  联想(Lenovo)小新Air14 2020锐龙版轻薄本
-                  全面屏办公笔记本电脑(6核R5-4600U 16G 512G 高色域)深空灰
-                </p>
-                <p class="info">
-                  【爆款#优惠300到手价4199,7月14日8点开抢】学生网课办公娱乐,100%sRGB,6核12线程，智能散热调节,指纹背光齐全,接口丰富可快充
-                </p>
-              </div>
-              <img src="./public/newProduct/小新Air14.jpg" alt="" />
-            </div>
-          </div>
-          <div class="product">
-            <div class="product-item">
-              <img src="./public/newProduct/thinkpadE14.jpg" alt="" />
-              <div class="description">
-                <h4>联想ThinkPad E14 锐龙版</h4>
-                <p>
-                  联想ThinkPad E14
-                  锐龙版（1TCD）14英寸轻薄笔记本电脑（锐龙5-4500U 16G 512GSSD
-                  IPS高分屏）黑色
-                </p>
-                <p class="info">
-                  全新7nm，可扩充双SSD，黑阀隐私摄像头，12项军标稳定测试，ThinkCool智能散热，哈曼卡顿
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h2>产品新闻</h2>
-          <div class="news"></div>
+        <div class="mobile" style="display: none;">
+          <img src="./public/menu.png" alt="" width="30px" height="30px" />
         </div>
       </div>
-      <div class="footer">
-        <div class="contact">
-          <div class="contact-item">
-            <img src="./public/map.png" alt="" />
-            <div>
-              福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+
+    </div>
+    <div class="mobile-nav">
+      <ul>
+        <a href="index.html">
+          <li>首页</li>
+        </a>
+        <a href="news.html">
+          <li>新闻</li>
+        </a>
+        <a href="about.html">
+          <li>关于我们</li>
+        </a>
+      </ul>
+    </div>
+    <div class="banner">
+      <ul class="slide">
+        <li>
+          <img src="./public/banner/1b409e11e58627ed.jpg" alt="" srcset="" draggable="false" />
+        </li>
+        <li>
+          <img src="./public/banner/7fa63f6a3f837c34.jpg" alt="" srcset="" draggable="false" />
+        </li>
+        <li>
+          <img src="./public/banner/951ae72b2bf7edf2.jpg" alt="" srcset="" draggable="false" />
+        </li>
+        <li>
+          <img src="./public/banner/e91577c15269fddf.jpg" alt="" srcset="" draggable="false" />
+        </li>
+      </ul>
+      <ul class="active">
+        <li class="slide-active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+    <div class="content">
+      <h1>服务范围</h1>
+      <div>
+        <h2>新品介绍</h2>
+        <div class="product">
+          <div class="product-item">
+            <img src="./public/newProduct/华为matebook14.jpg" alt="" />
+            <div class="description">
+              <h4>华为HUAWEI MateBook 14 2020</h4>
+              <p>
+                华为HUAWEI MateBook 14 2020款全面屏轻薄笔记本电脑 十代酷睿(i5
+                16G 512G MX350 触控屏 多屏协同)灰
+              </p>
+              <p class="info">
+                2k炫丽全面屏，搭配MX350版独立显卡，超轻薄金属机身，多点触控，指纹识别，配合多屏协同畅享劲酷体验！
+              </p>
             </div>
-          </div>
-          <div class="contact-item">
-            <img src="./public/email.png" alt="" />
-            <div>
-              test10086@qq.com
-            </div>
-          </div>
-          <div class="contact-item">
-            <img src="./public/mobile-phone.png" alt="" />
-            <div>
-              18159879874
-            </div>
-          </div>
-          <div class="contact-item">
-            <img src="./public/code.png" alt="" />
-            <div></div>
           </div>
         </div>
-        <div class="copyright">
-          版权所有&copy;数码之家
+        <div class="product">
+          <div class="product-item">
+            <div class="description">
+              <h4>联想(Lenovo)小新Air14</h4>
+              <p>
+                联想(Lenovo)小新Air14 2020锐龙版轻薄本
+                全面屏办公笔记本电脑(6核R5-4600U 16G 512G 高色域)深空灰
+              </p>
+              <p class="info">
+                【爆款#优惠300到手价4199,7月14日8点开抢】学生网课办公娱乐,100%sRGB,6核12线程，智能散热调节,指纹背光齐全,接口丰富可快充
+              </p>
+            </div>
+            <img src="./public/newProduct/小新Air14.jpg" alt="" />
+          </div>
         </div>
+        <div class="product">
+          <div class="product-item">
+            <img src="./public/newProduct/thinkpadE14.jpg" alt="" />
+            <div class="description">
+              <h4>联想ThinkPad E14 锐龙版</h4>
+              <p>
+                联想ThinkPad E14
+                锐龙版（1TCD）14英寸轻薄笔记本电脑（锐龙5-4500U 16G 512GSSD
+                IPS高分屏）黑色
+              </p>
+              <p class="info">
+                全新7nm，可扩充双SSD，黑阀隐私摄像头，12项军标稳定测试，ThinkCool智能散热，哈曼卡顿
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>产品新闻</h2>
+        <div class="news"></div>
       </div>
     </div>
-  </body>
-  <script src="./script.js"></script>
-  <script>
-    window.onresize = function () {
-      let index = $(".slide-active").text() - 1;
+    <div class="footer">
+      <div class="contact">
+        <div class="contact-item">
+          <img src="./public/map.png" alt="" />
+          <div>
+            福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+          </div>
+        </div>
+        <div class="contact-item">
+          <img src="./public/email.png" alt="" />
+          <div>
+            test10086@qq.com
+          </div>
+        </div>
+        <div class="contact-item">
+          <img src="./public/mobile-phone.png" alt="" />
+          <div>
+            18159879874
+          </div>
+        </div>
+        <div class="contact-item">
+          <img src="./public/code.png" alt="" />
+          <div></div>
+        </div>
+      </div>
+      <div class="copyright">
+        版权所有&copy;数码之家
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./script.js"></script>
+<script>
+  window.onresize = function () {
+    let index = $(".slide-active").text() - 1;
+    let width = $(document).width() + getScrollbarWidth();
+    $(".slide").css("left", `-${width * index}px`);
+    if (width < 920) {
+      $(".banner").css("display", "none");
+      let img = $(".product-item:eq(1) img");
+      let des = $(".product-item:eq(1) .description");
+      img.insertBefore(des);
+    }
+    if (width > 920) {
+      $(".banner").css("display", "block");
+      let img = $(".product-item:eq(1) img");
+      let des = $(".product-item:eq(1) .description");
+      des.insertBefore(img);
+    }
+  };
+  $(document).ready(function () {
+    $(".active li").click(function () {
+      $(".active li").removeClass("slide-active");
       let width = $(document).width() + getScrollbarWidth();
-      $(".slide").css("left", `-${width * index}px`);
-      if (width < 920) {
-        $(".banner").css("display", "none");
-        let img = $(".product-item:eq(1) img");
-        let des = $(".product-item:eq(1) .description");
-        img.insertBefore(des);
-      }
-      if (width > 920) {
-        $(".banner").css("display", "block");
-        let img = $(".product-item:eq(1) img");
-        let des = $(".product-item:eq(1) .description");
-        des.insertBefore(img);
-      }
-    };
-    $(document).ready(function () {
-      $(".active li").click(function () {
-        $(".active li").removeClass("slide-active");
-        let width = $(document).width() + getScrollbarWidth();
-        let nowClick = $(this);
-        nowClick.addClass("slide-active");
-        let index = nowClick.text() - 1;
-        $(".slide").animate({
-          left: `-${width * index}px`,
-        });
+      let nowClick = $(this);
+      nowClick.addClass("slide-active");
+      let index = nowClick.text() - 1;
+      $(".slide").animate({
+        left: `-${width * index}px`,
       });
-      axios.get("http://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
-        const { data } = res;
-        const news = data.filter((item, index) => index < 4);
-        news.map((item, index) => {
-          let newBarrage = $(
-            `<a href='news-detail.html?id=${index}'>
+    });
+    $(".slide").mousedown(function (e) {
+      e.stopPropagation()
+      const side = this
+      $(side).stop(true, false)
+      let x = e.clientX
+      let width = $(document).width() + getScrollbarWidth();
+      let index = $(".slide-active").text() - 1;
+      let movex = 0;
+      let now = +$(side).css('left').replace('px', '');
+      $(side).mousemove(function (me) {
+        e.stopPropagation()
+        movex = me.clientX
+        $(side).css({
+          left: `${now - (x - movex)}px`,
+        });
+      })
+      $(side).mouseup(function (e) {
+        $(side).off("mousemove")
+        let upIndex = index
+        // 增加
+        if (index < 3 && movex > 0 && (x - movex) > 200) {
+          $(side).stop(true, false)
+          $(side).animate({
+            left: `-${width * (upIndex + 1)}px`,
+          });
+          $(".active li").removeClass("slide-active");
+          $(".active li").eq(upIndex + 1).addClass("slide-active");
+          return
+        }
+        //减小
+        if (index > 0 && movex > 0 && (x - movex) < -200) {
+          $(side).stop(true, false)
+          $(side).animate({
+            left: `-${width * (upIndex - 1)}px`,
+          });
+          $(".active li").removeClass("slide-active");
+          $(".active li").eq(upIndex - 1).addClass("slide-active");
+          return
+        }
+        $(".slide").animate({
+          left: `-${width * upIndex}px`,
+        });
+        $(".active li").removeClass("slide-active");
+        $(".active li").eq(upIndex).addClass("slide-active");
+      })
+    })
+    axios.get("http://mock-api.com/5g7EP2Ke.mock/news").then((res) => {
+      const { data } = res;
+      const news = data.filter((item, index) => index < 4);
+      news.map((item, index) => {
+        let newBarrage = $(
+          `<a href='news-detail.html?id=${index}'>
               <div class='news-item'>
                 <img src='${item.imgSrc}'></img>
                 <div>${item.name}</div>
               </div>
             </a>`
-          );
-          $(".indexPage .news").append($(newBarrage));
-        });
+        );
+        $(".indexPage .news").append($(newBarrage));
       });
     });
-  </script>
+  });
+</script>
+
 </html>
