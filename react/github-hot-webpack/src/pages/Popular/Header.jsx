@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const Header = (props) => {
-  const { setType } = props;
+const Header = () => {
   const [active, setActive] = useState(0);
-  const [typeArr] = useState(['All', 'JavaScript', 'Ruby', 'Java', 'Python']);
+  const history = useHistory();
+  const { search } = useLocation();
+  const typeArr = ['All', 'JavaScript', 'Ruby', 'Java', 'Python'];
   const activeStyle = {
     color: '#c04539',
     margin: '0 10px',
@@ -16,9 +18,15 @@ const Header = (props) => {
     cursor: 'pointer',
   };
   const handleClick = (index) => {
-    setActive(index);
-    setType(typeArr[index]);
+    history.push({
+      pathname: '/popular',
+      search: typeArr[index],
+    });
   };
+  useEffect(() => {
+    const type = (search.length > 0 && search?.match(/[^?].+/)[0]) || 'All';
+    setActive(typeArr.findIndex((item) => item === type));
+  }, [search]);
   return (
     <div>
       <div

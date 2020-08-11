@@ -8,9 +8,12 @@ const BattleResult = () => {
   const history = useHistory();
   useEffect(() => {
     setTimeout(async () => {
-      const userArr = battle.search.slice(1, -1).split('&');
-      const user1 = userArr[0].slice(6, -1);
-      const user2 = userArr[1].slice(6, -1);
+      const arrArrReg = /[^\?].+/
+      const userReg = /(?<=\=).+/
+      const userArr = battle.search.match(arrArrReg)[0].split('&')
+      const user1 = userArr[0].match(userReg)[0];
+      const user2 = userArr[1].match(userReg)[0];
+      console.log({user1:userArr[0],user2:userArr[1]});
       const p1 = await request.get(`https://api.github.com/users/${user1}`);
       const p2 = await request.get(`https://api.github.com/users/${user2}`);
       setInfoArr([p1, p2]);

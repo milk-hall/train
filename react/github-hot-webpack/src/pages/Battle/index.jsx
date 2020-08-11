@@ -41,6 +41,8 @@ const Battle = () => {
     index === 1 ? setUserInfo1(data) : setUserInfo2(data);
   };
 
+  console.log(userInfo2.avatar_url);
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>Instructions</h1>
