@@ -9,7 +9,7 @@ module.exports = {
   // 自定义输出文件
   output: {
     path: path.resolve(__dirname, './dist'), // 路径
-    filename: 'bundle.js', // 文件名称
+    filename: '[name].[contenthash:8].js', // 文件名称
   },
   // 插件
   plugins: [
