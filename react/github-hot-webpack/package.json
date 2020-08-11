@@ -12,7 +12,11 @@
     "lint:fix": "eslint --fix --ext .js --ext .jsx src",
     "deploy": "npx gh-pages -d ./dist -e react/popular"
   },
-  "pre-commit": "lint:fix",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -35,6 +39,7 @@
     "file-loader": "^6.0.0",
     "font-awesome-webpack": "0.0.5-beta.2",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
     "less-loader": "^6.2.0",
     "pre-commit": "^1.2.2",
     "react": "^16.13.1",
