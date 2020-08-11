@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import LazyImg from '../../components/LazyImg';
 
 const ResultCard = ({ userInfo }) => {
-  const [lazySrc, setLazySrc] = useState(
-    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597134834153&di=f203e44246b76ccc349bf908593db36c&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Da9714efaaf86c91708035231f93c70c6%2Fddd3ab59d109b3dea0394e6ac4bf6c81810a4c48.jpg',
-  );
-  console.log(userInfo);
-
   const commonStyle = {
     fontSize: '22px',
     lineHeight: '22px',
@@ -17,14 +13,6 @@ const ResultCard = ({ userInfo }) => {
     textAlign: 'center',
     marginRight: '10px',
   };
-  
-  useEffect(() => {
-    const img = new Image();
-    img.src = userInfo.avatar_url;
-    img.addEventListener('load', () => {
-      setLazySrc(userInfo.avatar_url);
-    });
-  }, []);
 
   return (
     <div
@@ -39,7 +27,7 @@ const ResultCard = ({ userInfo }) => {
         padding: '10px',
       }}>
       <h3>{userInfo.name}</h3>
-      <img src={lazySrc} alt="" width="200px" height="200px" />
+      <LazyImg src={userInfo.avatar_url} alt="" width="200px" height="200px" />
       <div>
         score:
         {userInfo.score || 0}

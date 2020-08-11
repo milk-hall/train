@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import request from '@/utils/request';
+import LazyImg from '../../components/LazyImg';
 
 const Battle = () => {
   const [userInfo1, setUserInfo1] = useState({});
@@ -86,7 +87,7 @@ const Battle = () => {
               background: '#DDDDDD',
               padding: '20px',
             }}>
-            <img
+            <LazyImg
               src={userInfo1.avatar_url}
               alt="user1"
               style={{
@@ -130,7 +131,7 @@ const Battle = () => {
               padding: '20px',
               marginLeft: '200px',
             }}>
-            <img
+            <LazyImg
               src={userInfo2.avatar_url}
               alt="user2"
               style={{
