@@ -1,16 +1,36 @@
 import React, { useEffect } from "react";
 
 import { connect } from "dva";
-import { Button, Row, Col, Badge, Drawer, InputNumber } from "antd";
-import { ShoppingCartOutlined, GithubOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Row,
+  Col,
+  Badge,
+  Drawer,
+  InputNumber,
+  Menu,
+  Dropdown,
+  Popconfirm,
+  Spin,
+} from "antd";
+import {
+  ShoppingCartOutlined,
+  GithubOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
 import ShopCard from "../components/ShopCard";
 import "../index.css";
-import cart from "../models/cart";
 
-const mapStateToProps = ({ shop, cart }) => {
-  return { shop: shop, cart: cart };
+const mapStateToProps = ({ shop, cart, loading }) => {
+  return {
+    shop: shop,
+    cart: cart,
+    loading: loading.effects["shop/getData"],
+  };
 };
+
 const size = ["XS", "S", "M", "ML", "L", "XL", "XXL"];
+
 class ShopCart extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +39,7 @@ class ShopCart extends React.Component {
       active: null,
     };
   }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -28,6 +49,7 @@ class ShopCart extends React.Component {
       type: "cart/getData",
     });
   }
+
   handleClearCart() {
     const { dispatch } = this.props;
     dispatch({
@@ -35,6 +57,7 @@ class ShopCart extends React.Component {
     });
     this.setState({ visible: false });
   }
+
   handleChooseSize(size, index) {
     const { active } = this.state;
     const { dispatch } = this.props;
@@ -51,6 +74,7 @@ class ShopCart extends React.Component {
       return this.setState({ active: index });
     }
   }
+
   handleChangeCount(value, item) {
     if (typeof value !== "number") return;
     const { dispatch } = this.props;
@@ -59,13 +83,30 @@ class ShopCart extends React.Component {
       payload: { count: value, data: item },
     });
   }
+
+  handleOrderList(e) {
+    const { key } = e;
+    const { dispatch } = this.props;
+    dispatch({
+      type: "shop/sort",
+      payload: { key },
+    });
+  }
+
   render() {
     const {
       shop: { products },
       cart: { carts },
+      loading,
     } = this.props;
     const { active } = this.state;
     const { visible } = this.state;
+    const menu = (
+      <Menu onClick={this.handleOrderList.bind(this)}>
+        <Menu.Item key="up">升序</Menu.Item>
+        <Menu.Item key="down">降序</Menu.Item>
+      </Menu>
+    );
     return (
       <>
         <Drawer
@@ -113,7 +154,7 @@ class ShopCart extends React.Component {
             })}
           </div>
           <div style={{ height: "100px" }}>
-            {carts?.length>0 && (
+            {carts?.length > 0 && (
               <div>
                 <div>
                   <div>
@@ -128,21 +169,43 @@ class ShopCart extends React.Component {
                     </h1>
                   </div>
                 </div>
-                <Button
-                  type="primary"
-                  style={{ width: "100%", marginTop: "5px" }}
-                  onClick={this.handleClearCart.bind(this)}
+                <Popconfirm
+                  placement="top"
+                  title={`共计：$${
+                    carts
+                      ?.reduce(
+                        (init, item) => init + item.count * item.price,
+                        0
+                      )
+                      .toFixed(2) || 0
+                  }是否结账？`}
+                  onConfirm={this.handleClearCart.bind(this)}
+                  okText="是"
+                  cancelText="否"
                 >
-                  结账
-                </Button>
-                <Button
-                  type="primary"
-                  danger
-                  style={{ width: "100%", marginTop: "5px" }}
-                  onClick={this.handleClearCart.bind(this)}
+                  <Button
+                    type="primary"
+                    style={{ width: "100%", marginTop: "5px" }}
+                  >
+                    结账
+                  </Button>
+                </Popconfirm>
+                <Popconfirm
+                  placement="top"
+                  title={"确认清空购物车"}
+                  onConfirm={this.handleClearCart.bind(this)}
+                  okText="是"
+                  cancelText="否"
                 >
-                  清空购物车
-                </Button>
+                  <Button
+                    type="primary"
+                    danger
+                    style={{ width: "100%", marginTop: "5px" }}
+                    // onClick={this.handleClearCart.bind(this)}
+                  >
+                    清空购物车
+                  </Button>
+                </Popconfirm>
               </div>
             )}
           </div>
@@ -152,7 +215,20 @@ class ShopCart extends React.Component {
             <GithubOutlined style={{ fontSize: "48px", margin: "20px" }} />
           </Col>
           <Col span={12} style={{ textAlign: "right" }}>
-            <div style={{ padding: "20px", boxSizing: "border-box" }}>
+            <div
+              style={{
+                padding: "20px",
+                boxSizing: "border-box",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Dropdown overlay={menu} arrow trigger="click">
+                <Button style={{ marginRight: "20px" }}>
+                  排序 <DownOutlined />
+                </Button>
+              </Dropdown>
               <Badge
                 count={carts?.reduce((init, item) => {
                   return init + item.count;
@@ -169,7 +245,7 @@ class ShopCart extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={0} lg={4} md={6} xl={6} xxl={6}>
+          <Col xs={24} lg={4} md={6} xl={6} xxl={6}>
             <div className="size-map">
               <h2>Size:</h2>
               {size.map((item, index) => {
@@ -188,15 +264,21 @@ class ShopCart extends React.Component {
             </div>
           </Col>
           <Col xs={24} lg={20} md={18} xl={18} xxl={18}>
-            <Row>
-              {products.map((item, index) => {
-                return (
-                  <Col xs={24} md={12} lg={12} xl={8} xxl={6} key={index}>
-                    <ShopCard {...item}></ShopCard>
-                  </Col>
-                );
-              })}
-            </Row>
+            {loading ? (
+              <div style={{ textAlign: "center" }}>
+                <Spin />
+              </div>
+            ) : (
+              <Row>
+                {products.map((item, index) => {
+                  return (
+                    <Col xs={24} md={12} lg={12} xl={8} xxl={6} key={index}>
+                      <ShopCard {...item}></ShopCard>
+                    </Col>
+                  );
+                })}
+              </Row>
+            )}
           </Col>
         </Row>
       </>

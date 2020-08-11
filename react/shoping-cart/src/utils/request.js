@@ -1,9 +1,9 @@
 import axios from "axios";
 // 创建axios实例
-const service = axios.create({});
+const request = axios.create({});
 
 // response拦截器
-service.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
     if (response) {
       return response.data;
@@ -16,4 +16,4 @@ service.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export default service;
+export default request;
