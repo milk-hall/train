@@ -9,15 +9,13 @@ const GitHubHot = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const { search } = useLocation();
-  const type = (search.length > 0 && search?.match(/[^?].+/)[0]) || 'all';
+  const type = (search.length > 0 && search?.match(/(?<=language=).+/)[0]) || 'all';
   document.addEventListener('scroll', () => {
     const height = document.documentElement.clientHeight;
     const { scrollHeight } = document.documentElement || document.body;
     const { scrollTop } = document.documentElement || document.body;
-
-    if (scrollTop + height >= scrollHeight - 102 && !loading) {
+    if (scrollTop + height >= scrollHeight - 100 && !loading) {
       setLoading(true);
-      setPage(page + 1);
     }
   });
 
@@ -29,12 +27,11 @@ const GitHubHot = () => {
       try {
         const res = await request.get(
           `https://api.github.com/search/repositories?q=stars:%3E1${
-            type !== 'All' ? `+language:${type}` : ''
+            type !== 'All' ? `+language:${type}page=${1}` : ''
           }&sort=stars&order=desc&type=Repositories`,
         );
         setData(res.items);
         setLoading(false);
-        setPage(page + 1);
       } catch (error) {
         setLoading(false);
       }
@@ -49,13 +46,15 @@ const GitHubHot = () => {
           const res = await request.get(
             `https://api.github.com/search/repositories?q=stars:%3E1${
               type !== 'All' ? `+language:${type}` : ''
-            }&sort=stars&order=desc&type=Repositories&page=${page}`,
+            }&sort=stars&order=desc&type=Repositories&page=${page+1}`,
           );
           setData([...data, ...res.items]);
           setLoading(false);
+          setPage(page + 1);
         } catch (error) {
           setData([]);
           setLoading(false);
+          setPage(1);
         }
       }
     };

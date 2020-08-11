@@ -20,11 +20,11 @@ const Header = () => {
   const handleClick = (index) => {
     history.push({
       pathname: '/popular',
-      search: typeArr[index],
+      search: `language=${typeArr[index]}`,
     });
   };
   useEffect(() => {
-    const type = (search.length > 0 && search?.match(/[^?].+/)[0]) || 'All';
+    const type = (search.length > 0 && search?.match(/(?<=language=).+/)[0]) || 'All';
     setActive(typeArr.findIndex((item) => item === type));
   }, [search]);
   return (

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import request from '@/utils/request';
@@ -10,8 +9,8 @@ const BattleResult = () => {
   const history = useHistory();
   useEffect(() => {
     setTimeout(async () => {
-      const arrArrReg = /[^\?].+/;
-      const userReg = /(?<=\=).+/;
+      const arrArrReg = /[^?].+/;
+      const userReg = /(?<==).+/;
       const userArr = battle.search.match(arrArrReg)[0].split('&');
       const user1 = userArr[0].match(userReg)[0];
       const user2 = userArr[1].match(userReg)[0];

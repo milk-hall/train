@@ -24,7 +24,7 @@ const Content = (props) => {
           } = item;
           return (
             <div
-              key={item.id}>
+              key={item.name + item.id + index}>
               <ProductCard
                 name={name}
                 author={login}

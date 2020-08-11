@@ -3,7 +3,7 @@ import LazyImg from '../../components/LazyImg';
 
 const ProductCard = (props) => {
   const {
-    // name,
+    name,
     author,
     starCount,
     forkCount,
@@ -57,7 +57,7 @@ const ProductCard = (props) => {
             <i
               className="fa fa-user"
               style={{ ...iconStyle, color: '#ffbf74' }} />
-            {author}
+            {name}
           </div>
           <div style={commonStyle}>
             <i
