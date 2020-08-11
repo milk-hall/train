@@ -27,8 +27,8 @@ const GitHubHot = () => {
       try {
         const res = await request.get(
           `https://api.github.com/search/repositories?q=stars:%3E1${
-            type !== 'All' ? `+language:${type}page=${1}` : ''
-          }&sort=stars&order=desc&type=Repositories`,
+            type !== 'All' ? `+language:${type}` : ''
+          }&sort=stars&order=desc&type=Repositories&page=${1}`,
         );
         setData(res.items);
         setLoading(false);
@@ -46,7 +46,7 @@ const GitHubHot = () => {
           const res = await request.get(
             `https://api.github.com/search/repositories?q=stars:%3E1${
               type !== 'All' ? `+language:${type}` : ''
-            }&sort=stars&order=desc&type=Repositories&page=${page+1}`,
+            }&sort=stars&order=desc&type=Repositories&page=${page + 1}`,
           );
           setData([...data, ...res.items]);
           setLoading(false);
