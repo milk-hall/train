@@ -209,6 +209,7 @@
         });
       })
       $(side).mouseup(function (e) {
+        $(side).stop(true, false)
         $(side).off("mousemove")
         let upIndex = index
         // 增加
