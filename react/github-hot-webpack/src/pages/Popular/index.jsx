@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import request from '@/utils/request';
 import { useLocation } from 'react-router-dom';
+import { Alert } from 'antd';
 import Header from './Header';
 import Content from './Content';
 import './index.less';
@@ -9,6 +10,7 @@ const GitHubHot = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [message, setMessage] = useState('');
   const { search } = useLocation();
   const type = (search.length > 0 && search?.match(/(?<=language=).+/)[0]) || 'all';
   document.addEventListener('scroll', () => {
@@ -34,6 +36,7 @@ const GitHubHot = () => {
         setData(res.items);
         setLoading(false);
       } catch (error) {
+        setMessage(error.response.data?.message);
         setLoading(false);
       }
     };
@@ -53,6 +56,7 @@ const GitHubHot = () => {
           setLoading(false);
           setPage(page + 1);
         } catch (error) {
+          setMessage(error.response.data?.message);
           setData([]);
           setLoading(false);
           setPage(1);
@@ -65,6 +69,13 @@ const GitHubHot = () => {
   return (
     <div>
       <Header />
+      {message && (
+        <Alert
+          type="error"
+          message={message}
+          closable
+          onClose={() => setMessage('')} />
+      )}
       <Content data={data} loading={loading} />
     </div>
   );

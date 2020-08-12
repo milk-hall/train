@@ -1,19 +1,15 @@
 import React from 'react';
+import { Row, Col } from 'antd';
 import ProductCard from './ProductCard';
 
 const Content = (props) => {
   const { data, loading } = props;
   return (
-    <>
-      {' '}
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          padding: '0 20%',
-        }}>
+    <div
+      style={{
+        padding: '0 15%',
+      }}>
+      <Row justify="space-around" Row gutter={[8, 8]}>
         {data?.map((item, index) => {
           const {
             forks,
@@ -23,8 +19,14 @@ const Content = (props) => {
             owner: { avatar_url, login },
           } = item;
           return (
-            <div
-              key={item.name + item.id + index}>
+            <Col
+              key={item.name + item.id + index}
+              xs={24}
+              sm={24}
+              md={12}
+              lg={10}
+              xl={7}
+              xxl={6}>
               <ProductCard
                 name={name}
                 author={login}
@@ -34,11 +36,10 @@ const Content = (props) => {
                 imgSrc={avatar_url}
                 orderNumber={index}
                 loading={loading} />
-            </div>
+            </Col>
           );
         })}
-      </div>
-      {' '}
+      </Row>
       {loading && (
         <div
           style={{
@@ -52,7 +53,7 @@ const Content = (props) => {
           <i className="fa fa-spinner fa-spin" />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

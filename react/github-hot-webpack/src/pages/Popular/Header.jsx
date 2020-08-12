@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { Col, Select, Row } from 'antd';
 
 const Header = () => {
   const [active, setActive] = useState(0);
@@ -18,23 +19,32 @@ const Header = () => {
   }, [search]);
   return (
     <div>
-      <div
-        style={{
-          width: '100%',
-          textAlign: 'center',
-          margin: '20px 0',
-          overflowWrap: 'break-word',
-        }}>
-        {typeArr.map((item, index) => (
-          <span
-            style={index === active ? { color: '#c04539' } : { color: '#3D4455' }}
-            onClick={() => handleClick(index)}
-            key={item}
-            className="type-span">
-            {item}
-          </span>
-        ))}
-      </div>
+      <Row>
+        <Col xs={0} sm={0} md={24}>
+          <div style={{ textAlign: 'center' }}>
+            {typeArr.map((item, index) => (
+              <span
+                style={
+                  index === active ? { color: '#c04539' } : { color: '#3D4455' }
+                }
+                onClick={() => handleClick(index)}
+                key={item}
+                className="type-span">
+                {item}
+              </span>
+            ))}
+          </div>
+        </Col>
+        <Col sm={24} xs={24} md={0}>
+          <Select value={active} defaultOpen={0} onChange={handleClick} style={{ marginLeft: '10%' }}>
+            {typeArr.map((item, index) => (
+              <Select.Option key={`${item}select`} value={index}>
+                {item}
+              </Select.Option>
+            ))}
+          </Select>
+        </Col>
+      </Row>
     </div>
   );
 };

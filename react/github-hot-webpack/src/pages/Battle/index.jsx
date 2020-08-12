@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import request from '@/utils/request';
+import { Button, Input, Row, Col, message } from 'antd';
 import LazyImg from '../../components/LazyImg';
 
 const Battle = () => {
@@ -27,7 +28,7 @@ const Battle = () => {
     },
   ];
   const inputStyle = {
-    height: '30px',
+    height: '36px',
     width: '220px',
   };
   const submitStyle = {
@@ -36,27 +37,28 @@ const Battle = () => {
   };
 
   const handleSubmit = async (index) => {
-    const data = await request.get(
-      `https://api.github.com/users/${index === 1 ? input1 : input2}`,
-    );
-    index === 1 ? setUserInfo1(data) : setUserInfo2(data);
+    await request
+      .get(`https://api.github.com/users/${index === 1 ? input1 : input2}`)
+      .then((res) => {
+        index === 1 ? setUserInfo1(res) : setUserInfo2(res);
+      })
+      .catch((res) => {
+        const { response } = res;
+
+        message.warn(response.data.message);
+      });
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', padding: '0 10%' }}>
       <h1>Instructions</h1>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <Row justify="center">
         {arr.map((item) => (
-          <div key={item.name}>
+          <Col key={item.name} xs={24} sm={24} md={8}>
             <h3>{item.name}</h3>
             <div
               style={{
-                margin: '20px',
+                margin: '20px auto',
                 padding: '20px',
                 background: '#ebebeb',
                 width: '180px',
@@ -67,101 +69,104 @@ const Battle = () => {
               }}>
               <i className={item.className} style={item.style} />
             </div>
-          </div>
+          </Col>
         ))}
-      </div>
+      </Row>
       <h2>Players</h2>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        {userInfo1.avatar_url ? (
-          <div
-            style={{
-              width: '348px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              background: '#DDDDDD',
-              padding: '20px',
-            }}>
-            <LazyImg
-              src={userInfo1.avatar_url}
-              alt="user1"
+
+      <Row justify="center">
+        <Col md={12} sm={24}>
+          {userInfo1.avatar_url ? (
+            <div
               style={{
-                width: '50px',
-                height: '50px',
-              }} />
-            <span style={{ margin: '0 40px' }}>{userInfo1.login}</span>
-            <i
-              className="fa fa-close"
-              style={{ fontSize: '24px', cursor: 'pointer' }}
-              onClick={() => setUserInfo1({})} />
-          </div>
-        ) : (
-          <div>
-            <input
-              type="text"
-              style={inputStyle}
-              value={input1}
-              onChange={(e) => setInput1(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.keyCode !== 13) return;
-                handleSubmit(1);
-              }} />
-            <button
-              style={submitStyle}
-              disabled={!input1}
-              onClick={() => handleSubmit(1)}
-              onSubmit={() => handleSubmit(1)}>
-              submit
-            </button>
-          </div>
-        )}
-        {userInfo2.avatar_url ? (
-          <div
-            style={{
-              width: '348px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              background: '#DDDDDD',
-              padding: '20px',
-              marginLeft: '200px',
-            }}>
-            <LazyImg
-              src={userInfo2.avatar_url}
-              alt="user2"
+                width: '348px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                background: '#DDDDDD',
+                padding: '20px',
+                margin: '20px auto',
+              }}>
+              <LazyImg
+                src={userInfo1.avatar_url}
+                alt="user1"
+                style={{
+                  width: '50px',
+                  height: '50px',
+                }} />
+              <span style={{ margin: '0 40px' }}>{userInfo1.login}</span>
+              <i
+                className="fa fa-close"
+                style={{ fontSize: '24px', cursor: 'pointer' }}
+                onClick={() => setUserInfo1({})} />
+            </div>
+          ) : (
+            <div style={{ margin: '20px auto' }}>
+              <Input
+                type="text"
+                style={inputStyle}
+                value={input1}
+                onChange={(e) => setInput1(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.keyCode !== 13) return;
+                  handleSubmit(1);
+                }} />
+              <Button
+                style={submitStyle}
+                disabled={!input1}
+                type="primary"
+                onClick={() => handleSubmit(1)}
+                onSubmit={() => handleSubmit(1)}>
+                submit
+              </Button>
+            </div>
+          )}
+        </Col>
+        <Col md={12} sm={24}>
+          {userInfo2.avatar_url ? (
+            <div
               style={{
-                width: '50px',
-                height: '50px',
-              }} />
-            <span style={{ margin: '0 40px' }}>{userInfo2.login}</span>
-            <i
-              className="fa fa-close"
-              style={{ fontSize: '24px', cursor: 'pointer' }}
-              onClick={() => setUserInfo2({})} />
-          </div>
-        ) : (
-          <div style={{ marginLeft: '200px' }}>
-            <input
-              type="text"
-              style={inputStyle}
-              value={input2}
-              onChange={(e) => setInput2(e.target.value)} />
-            <button
-              style={submitStyle}
-              disabled={!input2}
-              onClick={() => handleSubmit(2)}>
-              submit
-            </button>
-          </div>
-        )}
-      </div>
+                width: '348px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                background: '#DDDDDD',
+                padding: '20px',
+                margin: '20px auto',
+              }}>
+              <LazyImg
+                src={userInfo2.avatar_url}
+                alt="user2"
+                style={{
+                  width: '50px',
+                  height: '50px',
+                }} />
+              <span style={{ margin: '0 40px' }}>{userInfo2.login}</span>
+              <i
+                className="fa fa-close"
+                style={{ fontSize: '24px', cursor: 'pointer' }}
+                onClick={() => setUserInfo2({})} />
+            </div>
+          ) : (
+            <div style={{ margin: '20px auto' }}>
+              <Input
+                type="text"
+                style={inputStyle}
+                value={input2}
+                onChange={(e) => setInput2(e.target.value)} />
+              <Button
+                style={submitStyle}
+                disabled={!input2}
+                type="primary"
+                onClick={() => handleSubmit(2)}>
+                submit
+              </Button>
+            </div>
+          )}
+        </Col>
+      </Row>
       {userInfo1.avatar_url && userInfo2.avatar_url && (
-        <button
+        <Button
           style={{ ...submitStyle, marginTop: '50px' }}
           onClick={() => {
             history.push({
@@ -170,7 +175,7 @@ const Battle = () => {
             });
           }}>
           BATTLE
-        </button>
+        </Button>
       )}
     </div>
   );

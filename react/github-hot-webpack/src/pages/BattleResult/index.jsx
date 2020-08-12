@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import request from '@/utils/request';
+import { Button } from 'antd';
 import ResultCard from './ResultCard';
 import './index.less';
 
@@ -32,13 +33,14 @@ const BattleResult = () => {
             width: '100%',
             textAlign: 'center',
           }}>
-          <button
+          <Button
+            type="primary"
             style={{ width: '120px', height: '36px' }}
             onClick={() => {
               history.goBack();
             }}>
             reset
-          </button>
+          </Button>
         </div>
       )}
     </div>

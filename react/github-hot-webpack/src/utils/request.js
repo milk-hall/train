@@ -10,10 +10,6 @@ service.interceptors.response.use(
     } 
       Promise.reject(new Error('error'));
   },
-  (error) => {
-    // eslint-disable-next-line no-alert
-    alert('请求出错！', error);
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 export default service;
