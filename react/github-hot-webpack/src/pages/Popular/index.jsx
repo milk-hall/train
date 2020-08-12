@@ -3,6 +3,7 @@ import request from '@/utils/request';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Content from './Content';
+import './index.less';
 
 const GitHubHot = () => {
   const [loading, setLoading] = useState(true);

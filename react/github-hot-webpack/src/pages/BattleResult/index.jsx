@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import request from '@/utils/request';
 import ResultCard from './ResultCard';
+import './index.less';
 
 const BattleResult = () => {
   const battle = useLocation();
@@ -21,13 +22,7 @@ const BattleResult = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-      }}>
+    <div className="battle-result">
       {infoArr.map((item, index) => (
         <ResultCard key={item.login + index} userInfo={item} />
       ))}

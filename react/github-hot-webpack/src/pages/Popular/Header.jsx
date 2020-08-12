@@ -6,17 +6,6 @@ const Header = () => {
   const history = useHistory();
   const { search } = useLocation();
   const typeArr = ['All', 'JavaScript', 'Ruby', 'Java', 'Python'];
-  const activeStyle = {
-    color: '#c04539',
-    margin: '0 10px',
-    fontSize: '24px',
-    cursor: 'pointer',
-  };
-  const commonStyle = {
-    margin: '0 10px',
-    fontSize: '24px',
-    cursor: 'pointer',
-  };
   const handleClick = (index) => {
     history.push({
       pathname: '/popular',
@@ -38,9 +27,10 @@ const Header = () => {
         }}>
         {typeArr.map((item, index) => (
           <span
-            style={index === active ? activeStyle : commonStyle}
+            style={index === active ? { color: '#c04539' } : { color: '#3D4455' }}
             onClick={() => handleClick(index)}
-            key={item}>
+            key={item}
+            className="type-span">
             {item}
           </span>
         ))}
