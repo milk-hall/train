@@ -1,7 +1,6 @@
+import React from 'react';
+import Loadable from 'react-loadable';
 import Popular from '@/pages/Popular';
-import Battle from '@/pages/Battle';
-import BattleResult from '@/pages/BattleResult';
-import BattleContainer from '@/components/BattleContainer';
 
 const routes = [
   {
@@ -11,15 +10,24 @@ const routes = [
   },
   {
     path: '/battle',
-    component: BattleContainer,
+    component: Loadable({
+      loader: () => import('@/components/BattleContainer'),
+      loading: () => <div />,
+    }),
     routes: [
       {
         path: '/battle/index',
-        component: Battle,
+        component: Loadable({
+          loader: () => import('@/pages/Battle'),
+          loading: () => <div />,
+        }),
       },
       {
         path: '/battle/result',
-        component: BattleResult,
+        component: Loadable({
+          loader: () => import('@/pages/BattleResult'),
+          loading: () => <div />,
+        }),
       },
     ],
   },
