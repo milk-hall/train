@@ -306,7 +306,6 @@ a {
   min-width: 250px;
   margin: 20px;
   align-items: center;
-
 }
 @keyframes turn {
   0% {
@@ -363,14 +362,14 @@ a {
 .news .news-item > .name {
   text-align: left;
   padding: 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   width: 10rem;
   min-width: 250px;
   min-height: 4rem;
   color: #fff;
   height: 80px;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
 
 .about .content {
@@ -420,6 +419,31 @@ a {
   height: auto;
 }
 
-.banner .slide>li{
+.banner .slide > li {
   cursor: pointer;
+}
+
+.bootstrapiso {
+  font-size: 0.8rem !important;
+}
+
+.modal-input {
+  display: inline-block !important;
+  width: 80% !important;
+  height: 1.5rem !important;
+  margin-left: 8px !important;
+}
+.bootstrapiso .modal-textarea {
+  width: 80% !important;
+  margin-left: 8px !important;
+}
+.bootstrapiso .modal-footer button {
+  font-size: 0.4rem !important;
+}
+.bootstrapiso .form-group {
+  display: flex;
+  align-items: center;
+}
+.bootstrapiso .modal-body {
+  font-size: 0.6rem !important;
 }

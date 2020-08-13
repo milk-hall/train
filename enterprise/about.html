@@ -7,7 +7,13 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>数码之家-关于我们</title>
   <link rel="stylesheet" href="./style.css" />
-  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="css4.1/bootstrapcustom.min.css" crossorigin="anonymous">
+
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=4twEQkGd3l32NM43dKc0mZKc9WUNa5cU"></script>
   <style type="text/css">
     #allmap {
@@ -111,11 +117,50 @@
         </div>
         <div class="contact-item">
           <img src="./public/code.png" alt="" />
-          <div></div>
+          <div>
+            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" style="cursor: pointer;">联系我们</a>
+          </div>
         </div>
       </div>
       <div class="copyright">
         版权所有&copy;数码之家
+      </div>
+    </div>
+  </div>
+  <div class="bootstrapiso">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">联系我们</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">邮箱:</label>
+                <input type="email" class="form-control modal-input" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">电话:</label>
+                <input type="email" class="form-control modal-input" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">信息:</label>
+                <textarea class="form-control modal-textarea" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">发送信息</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -124,8 +169,8 @@
 <script>
   // 百度地图API功能
   var map = new BMap.Map("allmap"); // 创建Map实例
-  map.centerAndZoom(new BMap.Point(119.248131,26.05996), 30); // 初始化地图,设置中心点坐标和地图级别
-  var point = new BMap.Point(119.248131,26.05996)
+  map.centerAndZoom(new BMap.Point(119.248131, 26.05996), 30); // 初始化地图,设置中心点坐标和地图级别
+  var point = new BMap.Point(119.248131, 26.05996)
   var mk = new BMap.Marker(point);
   map.addOverlay(mk);
   //添加地图类型控件
