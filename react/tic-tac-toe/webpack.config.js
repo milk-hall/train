@@ -17,7 +17,7 @@ module.exports = {
      * normal 标准输出
      * verbose 全部输出
      */
-    contentBase: path.join(__dirname, "game"),
+    contentBase: path.join(__dirname, "dist"),
     stats: "errors-only",
     //默认地址 localhost
     host: "localhost",
@@ -30,7 +30,7 @@ module.exports = {
   },
   // 自定义输出文件
   output: {
-    path: path.resolve(__dirname, "./game"), //路径
+    path: path.resolve(__dirname, "./dist"), //路径
     filename: "bundle.js", //文件名称
   },
   resolve: {
