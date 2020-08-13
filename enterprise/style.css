@@ -298,14 +298,13 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 10%;
 }
 .news .news-content > div {
   display: flex;
   justify-content: center;
-  width: 49%;
+  width: 25%;
   min-width: 250px;
-  margin: 1px;
+  margin: 20px;
   align-items: center;
 }
 @keyframes turn {
@@ -363,18 +362,21 @@ a {
 .news .news-item > .name {
   text-align: left;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   width: 10rem;
   min-width: 250px;
   min-height: 4rem;
   color: #fff;
+  height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .about .content {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding: 50px;
 }
 .about .content .introduce {
   display: flex;
@@ -384,7 +386,7 @@ a {
 }
 .about .content .contact {
   width: 600px;
-  height: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -399,6 +401,7 @@ a {
   width: auto;
   display: flex;
   align-items: center;
+  margin: 10px;
 }
 .about .content .contact .contact-item > div {
   width: auto;
@@ -412,5 +415,35 @@ a {
 }
 #allmap {
   width: 600px;
-  min-height: 200px;
+  min-height: 300px;
+  height: auto;
+}
+
+.banner .slide > li {
+  cursor: pointer;
+}
+
+.bootstrapiso {
+  font-size: 0.8rem !important;
+}
+
+.modal-input {
+  display: inline-block !important;
+  width: 80% !important;
+  height: 1.5rem !important;
+  margin-left: 8px !important;
+}
+.bootstrapiso .modal-textarea {
+  width: 80% !important;
+  margin-left: 8px !important;
+}
+.bootstrapiso .modal-footer button {
+  font-size: 0.4rem !important;
+}
+.bootstrapiso .form-group {
+  display: flex;
+  align-items: center;
+}
+.bootstrapiso .modal-body {
+  font-size: 0.6rem !important;
 }
