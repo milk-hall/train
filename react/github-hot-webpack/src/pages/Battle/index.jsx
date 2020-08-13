@@ -9,6 +9,8 @@ const Battle = () => {
   const [userInfo2, setUserInfo2] = useState({});
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
+  const [loading, setLoading] = useState(0);
+
   const history = useHistory();
   const arr = [
     {
@@ -37,6 +39,7 @@ const Battle = () => {
   };
 
   const handleSubmit = async (index) => {
+    setLoading(index);
     await request
       .get(`https://api.github.com/users/${index === 1 ? input1 : input2}`)
       .then((res) => {
@@ -44,9 +47,9 @@ const Battle = () => {
       })
       .catch((res) => {
         const { response } = res;
-
         message.warn(response.data.message);
       });
+    setLoading(0);
   };
 
   return (
@@ -112,6 +115,7 @@ const Battle = () => {
                   handleSubmit(1);
                 }} />
               <Button
+                loading={loading === 1}
                 style={submitStyle}
                 disabled={!input1}
                 type="primary"
@@ -155,6 +159,7 @@ const Battle = () => {
                 value={input2}
                 onChange={(e) => setInput2(e.target.value)} />
               <Button
+                loading={loading === 2}
                 style={submitStyle}
                 disabled={!input2}
                 type="primary"
