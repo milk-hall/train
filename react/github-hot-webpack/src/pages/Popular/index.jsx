@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import request from '@/utils/request';
 import { useLocation } from 'react-router-dom';
-import { Alert } from 'antd';
+import { Alert, message as alertMessage } from 'antd';
 import Header from './Header';
 import Content from './Content';
 import './index.less';
@@ -17,7 +17,7 @@ const GitHubHot = () => {
     const height = document.documentElement.clientHeight;
     const { scrollHeight } = document.documentElement || document.body;
     const { scrollTop } = document.documentElement || document.body;
-    if (scrollTop + height >= scrollHeight - 100 && !loading) {
+    if (scrollTop + height >= scrollHeight - 50 && !loading) {
       setLoading(true);
     }
   });
@@ -56,10 +56,9 @@ const GitHubHot = () => {
           setLoading(false);
           setPage(page + 1);
         } catch (error) {
-          setMessage(error.response.data?.message);
-          setData([]);
+          alertMessage.warning(error.response.data?.message);
           setLoading(false);
-          setPage(1);
+          document.documentElement.scrollTop -= 51;
         }
       }
     };
