@@ -7,7 +7,18 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>数码之家-首页</title>
   <link rel="stylesheet" href="./style.css" />
-  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
@@ -76,9 +87,9 @@
       </ul>
     </div>
     <div class="content">
-      <h1>服务范围</h1>
+      <h2 style="margin: 16px auto;">服务范围</h2>
       <div>
-        <h2>新品介绍</h2>
+        <h4>新品介绍</h4>
         <div class="product">
           <div class="product-item">
             <img src="./public/newProduct/华为matebook14.jpg" alt="" />
@@ -127,7 +138,7 @@
         </div>
       </div>
       <div>
-        <h2>产品新闻</h2>
+        <h4>产品新闻</h4>
         <div class="news"></div>
       </div>
     </div>
@@ -153,7 +164,10 @@
         </div>
         <div class="contact-item">
           <img src="./public/code.png" alt="" />
-          <div></div>
+          <div>
+            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"
+              style="cursor: pointer;">联系我们</a>
+          </div>
         </div>
       </div>
       <div class="copyright">
