@@ -17,23 +17,30 @@ a {
   justify-content: space-between;
   height: 80px;
   align-items: center;
-  padding: 0 10%;
+  padding: 0 16px;
   color: #fff;
   font-size: 0.8rem;
-
   max-width: 1200px;
   margin: 0 auto;
 }
+.nav ul{
+  line-height: 80px;
+  margin: 0px;
+}
 .nav ul li {
-  display: inline;
+  display: inline-block;
   margin: 5px;
+  line-height: 16px;
+  height:16px;
 }
 .nav a {
   color: #fff;
+
 }
 .nav .home {
   display: flex;
   align-items: center;
+  margin-left: 16px;
 }
 .nav .home > img {
   border-radius: 50%;
@@ -122,34 +129,33 @@ a {
   justify-content: center;
 }
 .indexPage .product-item > img {
-  width: 20rem;
-  height: 20rem;
   min-width: 350px;
   min-height: 350px;
+  width: 100vw;
+  flex: 1;
 }
 .indexPage .product-item .description {
+  flex: 1;
   background-color: #eee;
-  width: 20rem;
-  height: 20rem;
   min-width: 350px;
   min-height: 350px;
-  padding: 30px;
   font-size: 1rem;
   position: relative;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
+  padding-top: 5%;
 }
 .indexPage .product-item .description p {
   text-align: left;
+  margin: 16px;
 }
 .indexPage .product-item .description > .info {
   color: #5c5c5c;
-  width: 80%;
   font-size: 0.4rem !important;
   position: absolute;
   bottom: 40px;
   border-top: 1px solid #3d4455;
   padding-top: 30px;
-  left: 10%;
+  padding: 5%;
 }
 
 .indexPage .news {

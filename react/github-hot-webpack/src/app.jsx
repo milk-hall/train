@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />a
+        <Header />
         <Switch>
           {routes.map((route) => (
             <RouteWithSubRoutes key={route.path} {...route} />

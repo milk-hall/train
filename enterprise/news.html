@@ -7,7 +7,17 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>数码之家-新闻</title>
   <link rel="stylesheet" href="./style.css" />
-  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
@@ -111,7 +121,7 @@
           </a>
         </div>
         <div>
-          <div class="loading">
+          <div class="loading" style="display: flex;">
             <div></div>
           </div>
           <a href='#'>
@@ -124,8 +134,8 @@
       </div>
       <div class="news-page">
         <ul>
-          <li class="active">1</li>
-          <li>2</li>
+          <li class='pageUp'>up</li>
+          <li class='pageDown'>down</li>
         </ul>
       </div>
     </div>
@@ -152,7 +162,8 @@
         <div class="contact-item">
           <img src="./public/code.png" alt="" />
           <div>
-            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" style="cursor: pointer;">联系我们</a>
+            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"
+              style="cursor: pointer;">联系我们</a>
           </div>
         </div>
       </div>
@@ -165,44 +176,67 @@
 <script src="./script.js"></script>
 <script>
   $(document).ready(function () {
-    axios.get("https://mock-api.com/5g7EP2Ke.mock/news?page=1").then((res) => {
+    axios.get("https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=1&per_page=6").then((res) => {
       const { data } = res;
-      let pageIndex = $(".news-page .active").text() - 1;
-      setTimeout(() => {
-        data.data.map((item, index) => {
-          $('.news-content a').eq(index).attr('href', `news-detail.html?id=${index + pageIndex * 6}`)
-          $('.news-content img').eq(index).attr('src', item.imgSrc)
-          $('.news-content .name').eq(index).text(item.name);
-        })
-        $('.news-item').css('display', 'flex');
-        $('.loading').css('display', 'none')
-      }, 1000)
-    });
-    $(".news-page li").click(async function () {
-      $(".news-page li").removeClass("active");
-      $(this).addClass("active");
-      let pageIndex = $(this).text();
-      scrollTo(0, 0);
-      $('.news-item').css('display', 'none');
-      $('.loading').css('display', 'flex')
-
-      setTimeout(async () => {
+      let pageIndex = ($(".news-page .active").text() || 1) - 1;
+      let el = Array.from(Array(parseInt(data.data.total / 6) + 1)).reduce((total, _, index) => {
+        return total + `<li class='${index === 0 && 'active'}'>${index + 1}</li>`
+      }, '')
+      $('.pageUp').after(el)
+      data.data.news.map((item, index) => {
+        $('.news-content a').eq(index).attr('href', `news-detail.html?id=${index + pageIndex * 6}`)
+        $('.news-content img').eq(index).attr('src', item.imgSrc)
+        $('.news-content .name').eq(index).text(item.name);
+      })
+      $('.news-item').css('display', 'flex');
+      $('.loading').css('display', 'none')
+    }).then(res => {
+      $(".news-page li").click(async function () {
+        let pageIndex = $(this).text();
+        if (!Number(pageIndex)) return;
+        $(".news-page li").removeClass("active");
+        $(this).addClass("active");
+        scrollTo(0, 0);
+        let loadings = Array.from(Array(6)).map((item, index) => {
+          return (
+            `
+            <div>
+              <div class="loading">
+                <div></div>
+              </div>
+              <a href='#'>
+                <div class='news-item' style='display:none;'>
+                  <img src=''></img>
+                  <div class="name"></div>
+                </div>
+              </a>
+            </div>
+            `
+          )
+        });
+        $('.news-content').html(loadings);
         await axios
-          .get(`https://mock-api.com/5g7EP2Ke.mock/news?page=${pageIndex}`)
+          .get(`https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=${pageIndex}&per_page=6`)
           .then((res) => {
             const { data } = res;
             let pageIndex = $(".news-page .active").text() - 1;
-            data.data.map((item, index) => {
-              $('.news-content a').eq(index).attr('href', `news-detail.html?id=${index + pageIndex * 6}`)
-              $('.news-content .name').eq(index).text(item.name);
+            let news = data.data.news.map((item, index) => {
+              return (
+                `
+                <a href='news-detail.html?id=${index + pageIndex * 6}'>
+                  <div class='news-item' style='display:flex;'>
+                    <img src='https://img11.360buyimg.com/n7/jfs/t1/126553/20/6077/209803/5efd932dE8c4eec04/c8c0247e234807d8.jpg'></img>
+                    <div class="name">${item.name}</div>
+                  </div>
+                </a>
+                `
+              )
             })
+            $('.news-content').html(news)
           });
-        $('.news-item').css('display', 'flex');
-        $('.loading').css('display', 'none')
-      }, 1000)
-
+      });
     });
+
   });
 </script>
-
 </html>
