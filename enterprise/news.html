@@ -63,9 +63,9 @@
         </a>
       </ul>
     </div>
-    <div class="container">
-      <div class="news-content">
-        <div>
+    <div class="container news-content">
+      <div class="row justify-content-md-center no-gutters">
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading">
             <div></div>
           </div>
@@ -76,7 +76,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading">
             <div></div>
           </div>
@@ -87,7 +87,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading">
             <div></div>
           </div>
@@ -98,7 +98,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading">
             <div></div>
           </div>
@@ -109,7 +109,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading">
             <div></div>
           </div>
@@ -120,7 +120,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading" style="display: flex;">
             <div></div>
           </div>
@@ -131,7 +131,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading" style="display: flex;">
             <div></div>
           </div>
@@ -142,7 +142,7 @@
             </div>
           </a>
         </div>
-        <div>
+        <div class="col-6 col-sm-6 col-lg-3">
           <div class="loading" style="display: flex;">
             <div></div>
           </div>
@@ -163,34 +163,78 @@
     </div>
     <div class="footer">
       <div class="contact">
-        <div class="contact-item">
-          <img src="./public/map.png" alt="" />
-          <div>
-            福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+        <div class="row">
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="contact-item">
+              <img src="./public/map.png" alt="" />
+              <div>
+                福建省福州市仓山区建新镇金山大道618号金山工业区桔园洲园38号楼3层307室
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="contact-item">
-          <img src="./public/email.png" alt="" />
-          <div>
-            test10086@qq.com
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="contact-item">
+              <img src="./public/email.png" alt="" />
+              <div>
+                test10086@qq.com
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="contact-item">
-          <img src="./public/mobile-phone.png" alt="" />
-          <div>
-            18159879874
+
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="contact-item">
+              <img src="./public/mobile-phone.png" alt="" />
+              <div>
+                18159879874
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="contact-item">
-          <img src="./public/code.png" alt="" />
-          <div>
-            <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"
-              style="cursor: pointer;">联系我们</a>
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="contact-item">
+              <img src="./public/code.png" alt="" />
+              <div>
+                <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"
+                  style="cursor: pointer;">联系我们</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="copyright">
         版权所有&copy;数码之家
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">联系我们</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">邮箱:</label>
+              <input type="email" class="form-control modal-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">电话:</label>
+              <input type="email" class="form-control modal-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">信息:</label>
+              <textarea class="form-control modal-textarea" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary">发送信息</button>
+        </div>
       </div>
     </div>
   </div>
@@ -238,7 +282,7 @@
         let loadings = Array.from(Array(8)).map((item, index) => {
           return (
             `
-            <div>
+            <div class="col-6 col-sm-6 col-lg-3">
               <div class="loading">
                 <div></div>
               </div>
@@ -252,7 +296,7 @@
             `
           )
         });
-        $('.news-content').html(loadings);
+        $('.news-content .row').html(loadings);
         await axios
           .get(`https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=${pageIndex}&per_page=8`)
           .then((res) => {
@@ -261,16 +305,18 @@
             let news = data.data.news.map((item, index) => {
               return (
                 `
-                <a href='news-detail.html?id=${index + pageIndex * 8}'>
-                  <div class='news-item' style='display:flex;'>
-                    <img src='https://img11.360buyimg.com/n7/jfs/t1/126553/20/6077/209803/5efd932dE8c4eec04/c8c0247e234807d8.jpg'></img>
-                    <div class="name">${item.name}</div>
-                  </div>
-                </a>
+                <div class="col-6 col-sm-6 col-lg-3">
+                  <a href='news-detail.html?id=${index + pageIndex * 8}'>
+                    <div class='news-item' style='display:flex;'>
+                      <img src='https://img11.360buyimg.com/n7/jfs/t1/126553/20/6077/209803/5efd932dE8c4eec04/c8c0247e234807d8.jpg'></img>
+                      <div class="name">${item.name}</div>
+                    </div>
+                  </a>
+                </div>
                 `
               )
             })
-            $('.news-content').html(news)
+            $('.news-content .row').html(news)
           });
       });
     });
