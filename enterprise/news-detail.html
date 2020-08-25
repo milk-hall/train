@@ -64,11 +64,13 @@
       </ul>
     </div>
     <div class="loading" style="height: 800px;text-align: center;">loading...</div>
-    <div class="content" style="display: none;">
-      <h2 class="title"></h2>
-      <h4 class="second-title">2020-7-14</h4>
-      <img src="" alt="" width="80%" />
-      <p></p>
+    <div class="container" style="display: none;">
+      <div class="content">
+        <h2 class="title"></h2>
+        <h4 class="second-title">2020-7-14</h4>
+        <img src="" alt="" width="100%"/>
+        <p></p>
+      </div>
     </div>
     <div class="footer">
       <div class="contact">
@@ -116,8 +118,8 @@
         setTimeout(() => {
           $(".loading").css("display", "none");
           $(".news-detail .title").text(result.name);
-          $(".news-detail .content img").attr("src", result.wallpaper);
-          $(".news-detail .content").css("display", "flex");
+          $(".news-detail .container img").attr("src", result.wallpaper);
+          $(".news-detail .container").css("display", "block");
           $(".news-detail p").text(result.description);
         }, 1000);
       })
