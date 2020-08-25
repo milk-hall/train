@@ -63,7 +63,7 @@
         </a>
       </ul>
     </div>
-    <div class="content">
+    <div class="container">
       <div class="news-content">
         <div>
           <div class="loading">
@@ -131,6 +131,28 @@
             </div>
           </a>
         </div>
+        <div>
+          <div class="loading" style="display: flex;">
+            <div></div>
+          </div>
+          <a href='#'>
+            <div class='news-item' style='display:none;'>
+              <img src=''></img>
+              <div class="name"></div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <div class="loading" style="display: flex;">
+            <div></div>
+          </div>
+          <a href='#'>
+            <div class='news-item' style='display:none;'>
+              <img src=''></img>
+              <div class="name"></div>
+            </div>
+          </a>
+        </div>
       </div>
       <div class="news-page">
         <ul>
@@ -176,17 +198,33 @@
 <script src="./script.js"></script>
 <script>
   $(document).ready(function () {
-    axios.get("https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=1&per_page=6").then((res) => {
+
+
+    axios.get("https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=1&per_page=8").then((res) => {
       const { data } = res;
       let pageIndex = ($(".news-page .active").text() || 1) - 1;
-      let el = Array.from(Array(parseInt(data.data.total / 6) + 1)).reduce((total, _, index) => {
-        return total + `<li class='${index === 0 && 'active'}'>${index + 1}</li>`
+      let el = Array.from(Array(parseInt(data.data.total / 8) + 1)).reduce((total, _, index) => {
+        return total + `<li class='${index === 0 && 'active'} pages'>${index + 1}</li>`
       }, '')
       $('.pageUp').after(el)
       data.data.news.map((item, index) => {
-        $('.news-content a').eq(index).attr('href', `news-detail.html?id=${index + pageIndex * 6}`)
+        $('.news-content a').eq(index).attr('href', `news-detail.html?id=${index + pageIndex * 8}`)
         $('.news-content img').eq(index).attr('src', item.imgSrc)
         $('.news-content .name').eq(index).text(item.name);
+      })
+
+      $('.pageUp').click(function () {
+        let pageIndex = $(".news-page .active").text() - 1;
+        if (pageIndex > 0) {
+          $('.news-page .pages').eq(pageIndex - 1).trigger('click');
+        }
+      })
+      $('.pageDown').click(function () {
+        let pageIndex = $(".news-page .active").text() - 1;
+        if (pageIndex < (parseInt(data.data.total / 8) + 1)-1) {
+          console.log(pageIndex);
+          $('.news-page .pages').eq(pageIndex + 1).trigger('click');
+        }
       })
       $('.news-item').css('display', 'flex');
       $('.loading').css('display', 'none')
@@ -197,7 +235,7 @@
         $(".news-page li").removeClass("active");
         $(this).addClass("active");
         scrollTo(0, 0);
-        let loadings = Array.from(Array(6)).map((item, index) => {
+        let loadings = Array.from(Array(8)).map((item, index) => {
           return (
             `
             <div>
@@ -216,14 +254,14 @@
         });
         $('.news-content').html(loadings);
         await axios
-          .get(`https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=${pageIndex}&per_page=6`)
+          .get(`https://www.fastmock.site/mock/5f64398061ef0455b3c7033606f5d9f1/enterprise/api/news?page=${pageIndex}&per_page=8`)
           .then((res) => {
             const { data } = res;
             let pageIndex = $(".news-page .active").text() - 1;
             let news = data.data.news.map((item, index) => {
               return (
                 `
-                <a href='news-detail.html?id=${index + pageIndex * 6}'>
+                <a href='news-detail.html?id=${index + pageIndex * 8}'>
                   <div class='news-item' style='display:flex;'>
                     <img src='https://img11.360buyimg.com/n7/jfs/t1/126553/20/6077/209803/5efd932dE8c4eec04/c8c0247e234807d8.jpg'></img>
                     <div class="name">${item.name}</div>
@@ -239,4 +277,5 @@
 
   });
 </script>
+
 </html>

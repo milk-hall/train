@@ -23,7 +23,7 @@ a {
   max-width: 1200px;
   margin: 0 auto;
 }
-.nav ul{
+.nav ul {
   line-height: 80px;
   margin: 0px;
 }
@@ -31,11 +31,10 @@ a {
   display: inline-block;
   margin: 5px;
   line-height: 16px;
-  height:16px;
+  height: 16px;
 }
 .nav a {
   color: #fff;
-
 }
 .nav .home {
   display: flex;
@@ -201,7 +200,6 @@ a {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  max-width: 1200px;
 }
 .news-detail .content img {
   padding: 20px 0;
@@ -216,7 +214,7 @@ a {
   color: #3d4455;
 }
 .news-detail p {
-  margin: 40px 10%;
+  margin: 40px 0;
   font-size: 1rem;
   text-indent: 2;
 }
@@ -268,21 +266,21 @@ a {
   max-width: 1200px;
 }
 
-.news .content {
+/* .news .content {
   padding: 50px 100px;
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
-}
+} */
 
-.news .content .news-page ul {
+.news .container .news-page ul {
   display: flex;
   justify-content: center;
-  margin: 0;
+  margin: 10px;
   padding: 0;
 }
 
-.news .content .news-page li {
+.news .container .news-page li {
   margin: 0 10px;
   font-size: 0.5rem;
   line-height: 40px;
@@ -292,11 +290,12 @@ a {
   min-width: 40px;
   cursor: pointer;
   color: #fff;
+  text-align: center;
 }
-.news .content .news-page li:hover {
+.news .container .news-page li:hover {
   background-color: #3d4455;
 }
-.news .content .news-page .active {
+.news .container .news-page .active {
   background-color: #3d4455;
 }
 
@@ -369,7 +368,7 @@ a {
   text-align: left;
   padding: 10px;
   font-size: 0.8rem;
-  width: 10rem;
+  width: 100%;
   min-width: 250px;
   min-height: 4rem;
   color: #fff;
@@ -378,21 +377,13 @@ a {
   text-overflow: ellipsis;
 }
 
-.about .content {
-  text-align: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px;
+.about .container .introduce {
+  padding: 50px 0;
 }
-.about .content .introduce {
-  display: flex;
-  justify-content: center;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-}
-.about .content .contact {
-  width: 600px;
+.about .container .contact {
+  width: 100%;
   height: auto;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -403,25 +394,25 @@ a {
   color: #fff;
   text-align: left;
 }
-.about .content .contact .contact-item {
+.about .container .contact .contact-item {
   width: auto;
   display: flex;
   align-items: center;
   margin: 10px;
 }
-.about .content .contact .contact-item > div {
+.about .container .contact .contact-item > div {
   width: auto;
   max-width: 500px;
 }
-.about .content .contact .contact-item > img {
+.about .container .contact .contact-item > img {
   width: 2rem;
   height: 2rem;
   min-width: 40px;
   min-height: 40px;
 }
 #allmap {
-  width: 600px;
-  min-height: 300px;
+  width: 100%;
+  min-height: 420px;
   height: auto;
 }
 
