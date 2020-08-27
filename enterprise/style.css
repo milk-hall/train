@@ -323,7 +323,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   animation: turn 1s linear infinite;
-  margin: 100px;
+  margin: 100px auto;
 }
 .news .loading > div {
   width: 4rem;
