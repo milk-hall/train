@@ -4,7 +4,10 @@ body {
   font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+a:hover {
+  color: cornflowerblue !important;
 }
 .header {
   background-color: #4f4f4f;
