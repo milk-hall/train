@@ -164,8 +164,8 @@
         setTimeout(() => {
           $(".loading").css("display", "none");
           $(".news-detail .title").text(result.name);
-          $(".news-detail .container img").attr("src", result.wallpaper);
-          $(".news-detail .container").css("display", "block");
+          $(".news-detail>.container>.content>img").attr("src", result.wallpaper);
+          $(".news-detail>.container").css("display", "block");
           $(".news-detail p").text(result.description);
         }, 1000);
       })
