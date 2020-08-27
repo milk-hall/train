@@ -338,8 +338,6 @@ a:hover {
   flex-direction: column;
   border: 1px solid #3d4455;
   padding: 10px;
-  margin-right: -1px;
-  margin-bottom: -1px;
 }
 .news .news-item:hover {
   background-color: #eee;
@@ -425,4 +423,8 @@ a:hover {
 }
 .bootstrapiso .modal-body {
   font-size: 0.6rem !important;
+}
+.my-box-border{
+  margin-right: -1px !important;
+  margin-bottom: -1px !important;
 }
